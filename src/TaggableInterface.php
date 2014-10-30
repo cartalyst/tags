@@ -20,6 +20,21 @@
 interface TaggableInterface {
 
 	/**
+	 * Returns the tags delimiters.
+	 *
+	 * @return string
+	 */
+	public static function getTagsDelimiters();
+
+	/**
+	 * Sets the tags delimiters.
+	 *
+	 * @param  string  $delimiters
+	 * @return $this
+	 */
+	public static function setTagsDelimiters($delimiters);
+
+	/**
 	 * Returns the Eloquent tags model name.
 	 *
 	 * @return string
@@ -55,21 +70,6 @@ interface TaggableInterface {
 	 * @return \Cartalyst\Tags\IlluminateTag
 	 */
 	public function tags();
-
-	/**
-	 * Returns the tags delimiters.
-	 *
-	 * @return string
-	 */
-	public function getTagsDelimiters();
-
-	/**
-	 * Sets the tags delimiters.
-	 *
-	 * @param  string  $delimiters
-	 * @return $this
-	 */
-	public function setTagsDelimiters($delimiters);
 
 	/**
 	 *

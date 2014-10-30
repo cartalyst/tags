@@ -29,7 +29,7 @@ class CartalystTagsCreateTables extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('taggables', function(Blueprint $table)
+		Schema::create('tagged', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('taggable_type');

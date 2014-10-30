@@ -20,6 +20,13 @@
 trait TaggableTrait {
 
 	/**
+	 * The tags delimiter.
+	 *
+	 * @var string
+	 */
+	protected static $delimiter = ',';
+
+	/**
 	 * The Eloquent tags model name.
 	 *
 	 * @var string
@@ -34,11 +41,22 @@ trait TaggableTrait {
 	protected static $slugGenerator = 'Illuminate\Support\Str::slug';
 
 	/**
-	 * The tags delimiter.
-	 *
-	 * @var string
+	 * {@inheritDoc}
 	 */
-	protected static $delimiter = ',';
+	public static function getTagsDelimiter()
+	{
+		return static::$delimiter;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function setTagsDelimiter($delimiter)
+	{
+		static::$delimiter = $delimiter;
+
+		return get_called_class();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -77,7 +95,7 @@ trait TaggableTrait {
 	 */
 	public function tags()
 	{
-		return $this->morphToMany(static::$tagsModel, 'taggable', 'taggables', 'taggable_id', 'tag_id');
+		return $this->morphToMany(static::$tagsModel, 'taggable', 'tagged', 'taggable_id', 'tag_id');
 	}
 
 	/**
@@ -104,24 +122,6 @@ trait TaggableTrait {
 		}
 
 		return $this;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function getTagsDelimiter()
-	{
-		return static::$delimiter;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function setTagsDelimiter($delimiter)
-	{
-		static::$delimiter = $delimiter;
-
-		return get_called_class();
 	}
 
 	/**
