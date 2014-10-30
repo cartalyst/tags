@@ -20,7 +20,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CartalystTagsCreateTables extends Migration {
+class MigrationCartalystTagsCreateTables extends Migration {
 
 	/**
 	 * Run the migrations.
