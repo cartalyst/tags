@@ -35,6 +35,21 @@ interface TaggableInterface {
 	public static function setTagsModel($model);
 
 	/**
+	 * Returns the slug generator.
+	 *
+	 * @return string
+	 */
+	public static function getSlugGenerator();
+
+	/**
+	 * Sets the slug generator.
+	 *
+	 * @param  string  $name
+	 * @return void
+	 */
+	public static function setSlugGenerator($name);
+
+	/**
 	 * Returns the entity Eloquent tag model object.
 	 *
 	 * @return \Cartalyst\Tags\IlluminateTag

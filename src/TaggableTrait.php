@@ -27,6 +27,13 @@ trait TaggableTrait {
 	protected static $tagsModel = 'Cartalyst\Tags\IlluminateTag';
 
 	/**
+	 * The Slug generator method.
+	 *
+	 * @var string
+	 */
+	protected static $slugGenerator = 'Illuminate\Support\Str::slug';
+
+	/**
 	 * The tags delimiter.
 	 *
 	 * @var string
@@ -47,6 +54,22 @@ trait TaggableTrait {
 	public static function setTagsModel($model)
 	{
 		static::$tagsModel = $model;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function getSlugGenerator()
+	{
+		return static::$slugGenerator;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function setSlugGenerator($slugGenerator)
+	{
+		static::$slugGenerator = $slugGenerator;
 	}
 
 	/**
@@ -109,7 +132,10 @@ trait TaggableTrait {
 	 */
 	protected function addTag($name)
 	{
-		$tag = $this->createTagsModel()->firstOrCreate(compact('name'));
+		$tag = $this->createTagsModel()->firstOrCreate([
+			'name' => $name,
+			'slug' => $this->generateTagSlug($name),
+		]);
 
 		if ( ! $this->tags->contains($tag->id))
 		{
@@ -153,6 +179,17 @@ trait TaggableTrait {
 		}
 
 		return (array) array_unique(array_filter($tags));
+	}
+
+	/**
+	 * Generate the tag slug using the given name.
+	 *
+	 * @param  string  $name
+	 * @return string
+	 */
+	protected function generateTagSlug($name)
+	{
+		return call_user_func(static::$slugGenerator, $name);
 	}
 
 	/**
