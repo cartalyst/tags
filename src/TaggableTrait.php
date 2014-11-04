@@ -101,6 +101,14 @@ trait TaggableTrait {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function entityTags()
+	{
+		return $this->createTagsModel()->whereNamespace($this->getEntityClassName());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function tag($tags)
 	{
 		foreach ($this->prepareTags($tags) as $tag)
@@ -133,8 +141,9 @@ trait TaggableTrait {
 	protected function addTag($name)
 	{
 		$tag = $this->createTagsModel()->firstOrCreate([
-			'name' => $name,
-			'slug' => $this->generateTagSlug($name),
+			'name'      => $name,
+			'slug'      => $this->generateTagSlug($name),
+			'namespace' => $this->getEntityClassName(),
 		]);
 
 		if ( ! $this->tags->contains($tag->id))
@@ -200,6 +209,16 @@ trait TaggableTrait {
 	protected function createTagsModel()
 	{
 		return new static::$tagsModel;
+	}
+
+	/**
+	 * Returns the entity class name.
+	 *
+	 * @return string
+	 */
+	protected function getEntityClassName()
+	{
+		return $this->tags()->getMorphClass();
 	}
 
 }

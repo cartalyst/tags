@@ -38,6 +38,7 @@ class IlluminateTag extends Model {
 		'name',
 		'slug',
 		'count',
+		'namespace',
 	];
 
 	public function taggable()

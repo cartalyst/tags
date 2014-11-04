@@ -20,19 +20,19 @@
 interface TaggableInterface {
 
 	/**
-	 * Returns the tags delimiters.
+	 * Returns the tags delimiter.
 	 *
 	 * @return string
 	 */
-	public static function getTagsDelimiters();
+	public static function getTagsDelimiter();
 
 	/**
-	 * Sets the tags delimiters.
+	 * Sets the tags delimiter.
 	 *
-	 * @param  string  $delimiters
+	 * @param  string  $delimiter
 	 * @return $this
 	 */
-	public static function setTagsDelimiters($delimiters);
+	public static function setTagsDelimiter($delimiter);
 
 	/**
 	 * Returns the Eloquent tags model name.
@@ -67,16 +67,15 @@ interface TaggableInterface {
 	/**
 	 * Returns the entity Eloquent tag model object.
 	 *
-	 * @return \Cartalyst\Tags\IlluminateTag
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
 	 */
 	public function tags();
 
 	/**
+	 * Returns all the tags under the entity namespace.
 	 *
-	 *
-	 * @param  mixed  $tags
-	 * @return array
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
-	protected function prepareTags($tags);
+	public function entityTags();
 
 }

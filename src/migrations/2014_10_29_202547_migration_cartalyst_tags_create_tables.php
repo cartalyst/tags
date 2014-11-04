@@ -34,6 +34,7 @@ class MigrationCartalystTagsCreateTables extends Migration {
 			$table->increments('id');
 			$table->string('taggable_type');
 			$table->integer('taggable_id')->unsigned();
+			$table->integer('tag_id')->unsigned();
 
 			$table->engine = 'InnoDB';
 
@@ -43,6 +44,7 @@ class MigrationCartalystTagsCreateTables extends Migration {
 		Schema::create('tags', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('namespace');
 			$table->string('slug');
 			$table->string('name');
 			$table->integer('count')->unsigned();
