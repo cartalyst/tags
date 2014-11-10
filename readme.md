@@ -1,6 +1,6 @@
 # Tags
 
-Easily add tags to your Eloquent models.
+A Tagging package that easily allows you to add tags to your Eloquent models.
 
 Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](license.txt). Code well, rock on.
 
@@ -8,9 +8,12 @@ Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](license.txt). Code well
 
 Package history and capabilities.
 
-#### Unreleased - v1.0.0
+#### 11-Nov-14 - v1.0.0
 
-- First release
+- Can add tags to an entity.
+- Can remove tags from an entity.
+- Can retrieve all tags from an entity.
+- Can retrieve all tags from an entity namespace.
 
 ## Installation
 
