@@ -166,7 +166,7 @@ trait TaggableTrait {
 	 */
 	protected function removeTag($name)
 	{
-		if ($tag = $this->createTagsModel()->findByName($name))
+		if ($tag = $this->createTagsModel()->whereName($name)->first())
 		{
 			$tag->update([ 'count' => $tag->count - 1 ]);
 

@@ -51,4 +51,16 @@ class IlluminateTag extends Model {
 		return $this->morphTo();
 	}
 
+	/**
+	 * Finds a tag by its name.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @param  string  $name
+	 * @return \Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeName($query, $name)
+	{
+		return $query->whereName($name);
+	}
+
 }
