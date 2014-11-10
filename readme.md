@@ -1,5 +1,7 @@
 # Tags
 
+[![Build Status](http://ci.cartalyst.com/build-status/svg/33)](http://ci.cartalyst.com/build-status/view/33)
+
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
 Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](license.txt). Code well, rock on.
