@@ -50,7 +50,7 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase {
 
 		$this->addMockConnection($tag);
 
-		$query = m::mock('QueryBuilder');
+		$query = m::mock('Illuminate\Database\Eloquent\Builder');
 
 		$query
 			->shouldReceive('whereName')
@@ -70,7 +70,9 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase {
 	 */
 	protected function addMockConnection($model)
 	{
-		$model->setConnectionResolver($resolver = m::mock('Illuminate\Database\ConnectionResolverInterface'));
+		$model->setConnectionResolver(
+			$resolver = m::mock('Illuminate\Database\ConnectionResolverInterface')
+		);
 
 		$resolver
 			->shouldReceive('connection')

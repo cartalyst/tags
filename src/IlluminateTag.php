@@ -18,6 +18,7 @@
  */
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class IlluminateTag extends Model {
 
@@ -58,7 +59,7 @@ class IlluminateTag extends Model {
 	 * @param  string  $name
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
-	public function scopeName($query, $name)
+	public function scopeName(Builder $query, $name)
 	{
 		return $query->whereName($name);
 	}
