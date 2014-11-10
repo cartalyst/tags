@@ -41,14 +41,14 @@ class IlluminateTag extends Model {
 		'namespace',
 	];
 
+	/**
+	 * Returns the polymorphic relationship.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+	 */
 	public function taggable()
 	{
 		return $this->morphTo();
-	}
-
-	public function findByName($tag)
-	{
-		return $this->where('name', $tag)->first();
 	}
 
 }
