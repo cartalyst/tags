@@ -76,6 +76,6 @@ interface TaggableInterface {
 	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
-	public function allTags();
+	public static function allTags();
 
 }
