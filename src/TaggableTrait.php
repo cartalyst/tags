@@ -103,7 +103,9 @@ trait TaggableTrait {
 	 */
 	public function entityTags()
 	{
-		return $this->createTagsModel()->whereNamespace($this->getEntityClassName());
+		return $this->createTagsModel()->whereNamespace(
+			$this->getEntityClassName()
+		);
 	}
 
 	/**
