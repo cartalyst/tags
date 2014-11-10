@@ -101,7 +101,7 @@ trait TaggableTrait {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function entityTags()
+	public function allTags()
 	{
 		return $this->createTagsModel()->whereNamespace(
 			$this->getEntityClassName()
