@@ -78,4 +78,52 @@ interface TaggableInterface {
 	 */
 	public static function allTags();
 
+	/**
+	 * Attaches multiple tags to the entity.
+	 *
+	 * @param  string|array  $tags
+	 * @return bool
+	 */
+	public function tag($tags);
+
+	/**
+	 * Detaches multiple tags from the entity.
+	 *
+	 * @param  string|array  $tags
+	 * @return bool
+	 */
+	public function untag($tags);
+
+	/**
+	 * Attaches or detaches the given tags.
+	 *
+	 * @param  string|array  $tags
+	 * @return bool
+	 */
+	public function setTags($tags);
+
+	/**
+	 * Attaches the given tag to the entity.
+	 *
+	 * @param  string  $name
+	 * @return void
+	 */
+	public function addTag($name);
+
+	/**
+	 * Detaches the given tag from the entity.
+	 *
+	 * @param  string  $name
+	 * @return void
+	 */
+	public function removeTag($name);
+
+	/**
+	 * Prepares the given tags before being saved.
+	 *
+	 * @param  string|array  $tags
+	 * @return array
+	 */
+	public function prepareTags($tags);
+
 }

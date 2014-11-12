@@ -120,7 +120,7 @@ trait TaggableTrait {
 			$this->addTag($tag);
 		}
 
-		return $this;
+		return true;
 	}
 
 	/**
@@ -133,16 +133,37 @@ trait TaggableTrait {
 			$this->removeTag($tag);
 		}
 
-		return $this;
+		return true;
 	}
 
 	/**
-	 * Attach a tag to the entity.
-	 *
-	 * @param  string  $name
-	 * @return void
+	 * {@inheritDoc}
 	 */
-	protected function addTag($name)
+	public function setTags($tags)
+	{
+		// Prepare the tags
+		$tags = $this->prepareTags($tags);
+
+		// Get the current entity tags
+		$entityTags = $this->tags->lists('name');
+
+		// Prepare the tags to be added and removed
+		$tagsToAdd = array_diff($tags, $entityTags);
+		$tagsToDel = array_diff($entityTags, $tags);
+
+		// Detach the tags
+		if ( ! empty($tagsToDel)) $this->untag($tagsToDel);
+
+		// Attach the tags
+		if ( ! empty($tagsToAdd)) $this->tag($tagsToAdd);
+
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function addTag($name)
 	{
 		$tag = $this->createTagsModel()->firstOrCreate([
 			'name'      => $name,
@@ -159,12 +180,9 @@ trait TaggableTrait {
 	}
 
 	/**
-	 * Detach a tag from the entity.
-	 *
-	 * @param  string  $name
-	 * @return void
+	 * {@inheritDoc}
 	 */
-	protected function removeTag($name)
+	public function removeTag($name)
 	{
 		if ($tag = $this->createTagsModel()->whereName($name)->first())
 		{
@@ -175,13 +193,12 @@ trait TaggableTrait {
 	}
 
 	/**
-	 * Prepares the given tags before being saved.
-	 *
-	 * @param  string|array  $tags
-	 * @return array
+	 * {@inheritDoc}
 	 */
-	protected function prepareTags($tags)
+	public function prepareTags($tags)
 	{
+		if (is_null($tags)) return [];
+
 		if (is_string($tags))
 		{
 			$delimiter = preg_quote($this->getTagsDelimiter(), '#');
@@ -191,7 +208,7 @@ trait TaggableTrait {
 			);
 		}
 
-		return (array) array_unique(array_filter($tags));
+		return array_unique(array_filter($tags));
 	}
 
 	/**
