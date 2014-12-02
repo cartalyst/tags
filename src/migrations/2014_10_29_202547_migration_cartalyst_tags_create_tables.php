@@ -60,7 +60,7 @@ class MigrationCartalystTagsCreateTables extends Migration {
 	 */
 	public function down()
 	{
-		$tables = [ 'tags', 'taggables' ];
+		$tables = [ 'tagged', 'tags' ];
 
 		foreach ($tables as $table) Schema::drop($table);
 	}
