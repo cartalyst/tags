@@ -47,7 +47,7 @@ class MigrationCartalystTagsCreateTables extends Migration {
 			$table->string('namespace');
 			$table->string('slug');
 			$table->string('name');
-			$table->integer('count')->unsigned();
+			$table->integer('count')->default(0)->unsigned();
 
 			$table->engine = 'InnoDB';
 		});
