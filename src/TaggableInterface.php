@@ -17,6 +17,8 @@
  * @link       http://cartalyst.com
  */
 
+use Illuminate\Database\Eloquent\Builder;
+
 interface TaggableInterface {
 
 	/**
@@ -77,6 +79,15 @@ interface TaggableInterface {
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public static function allTags();
+
+	/**
+	 * Returns all the entities with the given tags.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @param  string|array  $tags
+	 * @return \Illuminate\Database\Eloquent\Builder
+	 */
+	public static function scopeWhereTag(Builder $query, $tags);
 
 	/**
 	 * Attaches multiple tags to the entity.

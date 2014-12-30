@@ -17,6 +17,8 @@
  * @link       http://cartalyst.com
  */
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait TaggableTrait {
 
 	/**
@@ -108,6 +110,19 @@ trait TaggableTrait {
 		return $instance->createTagsModel()->whereNamespace(
 			$instance->getEntityClassName()
 		);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function scopeWhereTag(Builder $query, $tags)
+	{
+		$tags = (new static)->prepareTags($tags);
+
+		return $query->whereHas('tags', function($query) use($tags)
+		{
+			$query->whereIn('slug', $tags);
+		});
 	}
 
 	/**
