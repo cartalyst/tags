@@ -154,13 +154,13 @@ trait TaggableTrait {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setTags($tags)
+	public function setTags($tags, $type = 'name')
 	{
 		// Prepare the tags
 		$tags = $this->prepareTags($tags);
 
 		// Get the current entity tags
-		$entityTags = $this->tags->lists('name');
+		$entityTags = $this->tags->lists($type);
 
 		// Prepare the tags to be added and removed
 		$tagsToAdd = array_diff($tags, $entityTags);

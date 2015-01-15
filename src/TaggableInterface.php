@@ -109,9 +109,10 @@ interface TaggableInterface {
 	 * Attaches or detaches the given tags.
 	 *
 	 * @param  string|array  $tags
+	 * @param  string  $type
 	 * @return bool
 	 */
-	public function setTags($tags);
+	public function setTags($tags, $type = 'name');
 
 	/**
 	 * Attaches the given tag to the entity.
