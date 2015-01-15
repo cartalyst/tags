@@ -256,6 +256,11 @@ trait TaggableTrait {
 	 */
 	protected function getEntityClassName()
 	{
+		if (isset(static::$entityNamespace))
+		{
+			return static::$entityNamespace;
+		}
+
 		return $this->tags()->getMorphClass();
 	}
 
