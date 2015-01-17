@@ -18,6 +18,9 @@
 	<filter>
 		<whitelist>
 			<directory suffix=".php">./src/</directory>
+			<exclude>
+				<file>./src/migrations/2014_10_29_202547_migration_cartalyst_tags_create_tables.php</file>
+			</exclude>
 		</whitelist>
 	</filter>
 	<logging>

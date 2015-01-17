@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Part of the Tags package.
  *
@@ -13,56 +14,55 @@
  * @version    1.0.0
  * @author     Cartalyst LLC
  * @license    Cartalyst PSL
- * @copyright  (c) 2011-2014, Cartalyst LLC
+ * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrationCartalystTagsCreateTables extends Migration {
+class MigrationCartalystTagsCreateTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tagged', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('taggable_type');
+            $table->integer('taggable_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('tagged', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('taggable_type');
-			$table->integer('taggable_id')->unsigned();
-			$table->integer('tag_id')->unsigned();
+            $table->engine = 'InnoDB';
 
-			$table->engine = 'InnoDB';
+            $table->index([ 'taggable_type', 'taggable_id' ]);
+        });
 
-			$table->index([ 'taggable_type', 'taggable_id' ]);
-		});
+        Schema::create('tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('namespace');
+            $table->string('slug');
+            $table->string('name');
+            $table->integer('count')->default(0)->unsigned();
 
-		Schema::create('tags', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('namespace');
-			$table->string('slug');
-			$table->string('name');
-			$table->integer('count')->default(0)->unsigned();
+            $table->engine = 'InnoDB';
+        });
+    }
 
-			$table->engine = 'InnoDB';
-		});
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $tables = [ 'tagged', 'tags' ];
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		$tables = [ 'tagged', 'tags' ];
-
-		foreach ($tables as $table) Schema::drop($table);
-	}
-
+        foreach ($tables as $table) {
+            Schema::drop($table);
+        }
+    }
 }
