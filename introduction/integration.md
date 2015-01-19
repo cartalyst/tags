@@ -4,7 +4,7 @@ Cartalyst packages are framework agnostic and as such can be integrated easily n
 
 ### Laravel
 
-Integrating the package into Laravel 4 or Laravel 5 is incredibly easy.
+Integrating the package into Laravel 4 is incredibly easy.
 
 #### Migrations
 
@@ -23,9 +23,8 @@ Add the `Cartalyst\Tags\TaggableTrait` and implement the `Cartalyst\Tags\Taggabl
 use Cartalyst\Tags\TaggableTrait;
 use Cartalyst\Tags\TaggableInterface;
 
-class Product extends Eloquent implements TaggableInterface {
-
-	use TaggableTrait;
-
+class Product extends Eloquent implements TaggableInterface
+{
+    use TaggableTrait;
 }
 ```

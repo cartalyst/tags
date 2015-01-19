@@ -6,16 +6,16 @@ The best and easiest way to install the Tags package is with [Composer](http://g
 
 Open your `composer.json` file and add the following to the `require` array:
 
-	"cartalyst/tags": "~1.0"
+    "cartalyst/tags": "~1.0"
 
 Add the following lines after the `require` array on your `composer.json` file:
 
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://packages.cartalyst.com"
-		}
-	]
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.cartalyst.com"
+        }
+    ]
 
 > **Note:** Make sure that after the required changes your `composer.json` file is valid by running `composer validate`.
 
@@ -23,10 +23,10 @@ Add the following lines after the `require` array on your `composer.json` file:
 
 Run Composer to install or update the new requirement.
 
-	php composer install
+    php composer install
 
 or
 
-	php composer update
+    php composer update
 
 Now you are able to require the `vendor/autoload.php` file to autoload the package.
