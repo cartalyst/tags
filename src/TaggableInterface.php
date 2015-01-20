@@ -140,4 +140,11 @@ interface TaggableInterface
      * @return array
      */
     public function prepareTags($tags);
+
+    /**
+     * Creates a new model instance.
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public static function createTagsModel();
 }

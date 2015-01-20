@@ -237,6 +237,14 @@ trait TaggableTrait
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function createTagsModel()
+    {
+        return new static::$tagsModel;
+    }
+
+    /**
      * Generate the tag slug using the given name.
      *
      * @param  string  $name
@@ -245,16 +253,6 @@ trait TaggableTrait
     protected function generateTagSlug($name)
     {
         return call_user_func(static::$slugGenerator, $name);
-    }
-
-    /**
-     * Creates a new model instance.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    protected function createTagsModel()
-    {
-        return new static::$tagsModel;
     }
 
     /**
