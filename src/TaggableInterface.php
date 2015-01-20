@@ -84,13 +84,24 @@ interface TaggableInterface
     public static function allTags();
 
     /**
-     * Returns all the entities with the given tags.
+     * Returns the entities with only the given tags.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  string|array  $tags
+     * @param  string  $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function scopeWhereTag(Builder $query, $tags);
+    public static function scopeWhereTag(Builder $query, $tags, $type = 'slug');
+
+    /**
+     * Returns the entities with one of the given tags.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string|array  $tags
+     * @param  string  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function scopeWithTag(Builder $query, $tags, $type = 'slug');
 
     /**
      * Attaches multiple tags to the entity.
@@ -101,12 +112,13 @@ interface TaggableInterface
     public function tag($tags);
 
     /**
-     * Detaches multiple tags from the entity.
+     * Detaches multiple tags from the entity or if no tags are
+     * passed, removes all the attached tags from the entity.
      *
-     * @param  string|array  $tags
+     * @param  string|array|null  $tags
      * @return bool
      */
-    public function untag($tags);
+    public function untag($tags = null);
 
     /**
      * Attaches or detaches the given tags.

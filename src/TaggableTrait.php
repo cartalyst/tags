@@ -118,12 +118,29 @@ trait TaggableTrait
     /**
      * {@inheritDoc}
      */
-    public static function scopeWhereTag(Builder $query, $tags)
+    public static function scopeWhereTag(Builder $query, $tags, $type = 'slug')
     {
         $tags = (new static)->prepareTags($tags);
 
-        return $query->whereHas('tags', function ($query) use ($tags) {
-            $query->whereIn('slug', $tags);
+        foreach ($tags as $tag)
+        {
+            $query->whereHas('tags', function ($query) use ($type, $tag) {
+                $query->where($type, $tag);
+            });
+        }
+
+        return $query;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function scopeWithTag(Builder $query, $tags, $type = 'slug')
+    {
+        $tags = (new static)->prepareTags($tags);
+
+        return $query->whereHas('tags', function ($query) use ($type, $tags) {
+            $query->whereIn($type, $tags);
         });
     }
 
@@ -142,8 +159,10 @@ trait TaggableTrait
     /**
      * {@inheritDoc}
      */
-    public function untag($tags)
+    public function untag($tags = null)
     {
+        $tags = $tags ?: $this->tags->lists('name');
+
         foreach ($this->prepareTags($tags) as $tag) {
             $this->removeTag($tag);
         }
@@ -206,7 +225,14 @@ trait TaggableTrait
 
         $tag = $this
             ->createTagsModel()
-            ->whereNamespace($namespace)->whereName($name)->first()
+            ->whereNamespace($namespace)
+            ->where(function($query) use ($name) {
+                $query
+                    ->orWhere('name', $name)
+                    ->orWhere('slug', $name)
+                ;
+            })
+            ->first()
         ;
 
         if ($tag) {

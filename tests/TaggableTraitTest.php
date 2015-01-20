@@ -64,10 +64,12 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
 
         $taggable
             ->getConnection()->getQueryGrammar()
-            ->shouldReceive('wrap')->once()
+            ->shouldReceive('wrap')->times(3)
         ;
 
-        $taggable->whereTag('foo');
+        $taggable->whereTag('foo, bar');
+
+        $taggable->withTag('foo');
     }
 
     /** @test */
@@ -136,7 +138,7 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
 
         $taggable->tag('foo');
 
-         $taggable->tag(null);
+        $taggable->tag(null);
     }
 
     /** @test */
@@ -156,7 +158,7 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
         $taggable
             ->getConnection()->getPostProcessor()
             ->shouldReceive('processSelect')
-            ->once()->andReturn(['foo'])
+            ->once()->andReturn([ 'foo' ])
         ;
 
         $taggable->getConnection()->shouldReceive('update');
@@ -175,6 +177,38 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
         ;
 
         $taggable->untag('foo');
+    }
+
+    /** @test */
+    public function it_can_remove_all_tags()
+    {
+        $taggable = new Taggable;
+
+        $taggable = $this->addMockConnection($taggable, true);
+
+        $taggable
+            ->getConnection()->getQueryGrammar()
+            ->shouldReceive('compileSelect')
+        ;
+
+        $taggable->getConnection()->shouldReceive('select');
+
+        $taggable
+            ->getConnection()->getPostProcessor()
+            ->shouldReceive('processSelect')
+            ->once()->andReturn([ 'foo' ])
+        ;
+
+        $taggable->getConnection()->shouldReceive('update');
+
+        $taggable
+            ->getConnection()->getQueryGrammar()
+            ->shouldReceive('compileUpdate')
+        ;
+
+        $taggable->getConnection()->shouldReceive('delete');
+
+        $taggable->untag();
     }
 
     /** @test */
