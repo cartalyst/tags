@@ -32,6 +32,43 @@ $delimiter | true     | string  | The delimiter to be used.
 Product::setTagsDelimiter(';');
 ```
 
+### Slug Generator
+
+The Tags package needs a way to create a sluggified tagged name, to achieve this, by default we use the `Illuminate\Support\Str::slug` method but if required you can easily swap the Slug Generator method to one that fits your own needs.
+
+#### Get the Slug Generator
+
+This will return the current Slug Generator.
+
+```php
+$generator = Product::getSlugGenerator();
+```
+
+#### Set the Slug Generator
+
+This allows you to change the Slug Generator.
+
+##### Parameters
+
+Key            | Required | Type  | Description
+-------------- | -------- | ----- | --------------------------------------------
+$slugGenerator | true     | mixed | The slug generation method name or Closure.
+
+##### Usage
+
+```php
+// Through a function string
+Product::setSlugGenerator('slugify_string');
+
+// Through a class@method string
+Product::setSlugGenerator('MyGenerator::slug');
+
+// Through a Closure
+Product::setSlugGenerator(function($name) {
+	return str_replace(' ', '_', strtolower($name));
+});
+```
+
 ### Adding Tags
 
 Adds a single or multiple tags to the entity through an array or through a string separated by the entity delimiter.
@@ -127,41 +164,4 @@ This will return all the tags that belongs to the given Entity Namespace.
 
 ```
 $tags = Product::allTags();
-```
-
-### Slug Generator
-
-The Tags package needs a way to create a sluggified tagged name, to achieve this, by default we use the `Illuminate\Support\Str::slug` method but if required you can easily swap the Slug Generator method to one that fits your own needs.
-
-#### Get the Slug Generator
-
-This will return the current Slug Generator.
-
-```php
-$generator = Product::getSlugGenerator();
-```
-
-#### Set the Slug Generator
-
-This allows you to change the Slug Generator.
-
-##### Parameters
-
-Key            | Required | Type  | Description
--------------- | -------- | ----- | --------------------------------------------
-$slugGenerator | true     | mixed | The slug generation method name or Closure.
-
-##### Usage
-
-```php
-// Through a function string
-Product::setSlugGenerator('slugify_string');
-
-// Through a class@method string
-Product::setSlugGenerator('MyGenerator::slug');
-
-// Through a Closure
-Product::setSlugGenerator(function($name) {
-	return str_replace(' ', '_', strtolower($name));
-});
 ```
