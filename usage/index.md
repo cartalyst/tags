@@ -32,7 +32,7 @@ $delimiter | true     | string  | The delimiter to be used.
 Product::setTagsDelimiter(';');
 ```
 
-### Add Tags
+### Adding Tags
 
 Adds a single or multiple tags to the entity through an array or through a string separated by the entity delimiter.
 
@@ -55,7 +55,7 @@ $product->tag('foo, bar, baz');
 $product->tag([ 'foo', 'bar', 'baz' ]);
 ```
 
-### Remove Tags
+### Removing Tags
 
 Removes a single or multiple tags to the entity through an array or through a string separated by the entity delimiter.
 
@@ -78,7 +78,7 @@ $product->untag('bar, baz');
 $product->untag([ 'bar', 'baz' ]);
 ```
 
-### Set Tags
+### Setting Tags
 
 This method is very similar to the `tag()` method, but it combines the `untag()` aswell, so it automatically identifies the tags to add and remove.
 
