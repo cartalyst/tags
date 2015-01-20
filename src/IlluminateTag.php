@@ -5,10 +5,10 @@
  *
  * NOTICE OF LICENSE
  *
- * Licensed under the Cartalyst PSL License.
+ * Licensed under the 3-clause BSD License.
  *
- * This source file is subject to the Cartalyst PSL License that is
- * bundled with this package in the license.txt file.
+ * This source file is subject to the BSD 3-Clause License that is
+ * bundled with this package in the LICENSE file.
  *
  * @package    Tags
  * @version    1.0.0

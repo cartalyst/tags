@@ -4,7 +4,7 @@
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
-Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](LICENSE). Code well, rock on.
+An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
 ## Documentation
 
@@ -35,6 +35,6 @@ Bug reports, proposals, and pull requests can be submitted by following our [Con
 
 ## License
 
-This software is released under the [Cartalyst PSL](LICENSE) License.
+This software is released under the [BSD 3-Clause](LICENSE) License.
 
 © 2011-2015 Cartalyst LLC, All rights reserved.
