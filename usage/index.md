@@ -113,6 +113,9 @@ $product->untag('bar, baz');
 
 // Through an array
 $product->untag([ 'bar', 'baz' ]);
+
+// Remove all the tags
+$product->untag();
 ```
 
 ### Setting Tags
