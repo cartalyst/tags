@@ -7,13 +7,13 @@
  *
  * Licensed under the 3-clause BSD License.
  *
- * This source file is subject to the BSD 3-Clause License that is
+ * This source file is subject to the 3-clause BSD License that is
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
  * @version    1.0.0
  * @author     Cartalyst LLC
- * @license    Cartalyst PSL
+ * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
