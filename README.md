@@ -12,7 +12,7 @@ Reader-friendly Documentation can be found here. [Tags Manual](https://cartalyst
 
 Raw files can be found via this projects docs/version branch.
 
-- [v1.0](https://github.com/cartalyst/tags/tree/docs/1.0)
+- [1.0](https://github.com/cartalyst/tags/tree/docs/1.0)
 
 ## Changelog
 
@@ -27,11 +27,13 @@ The following support channels can be used for contact.
 - [Twitter](https://cartalyst.com/@twitter)
 - [Email](mailto:help@cartalyst.com)
 
-Bug reports, proposals, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md)
+Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).
 
-## Contribution & Protocols
+## Contributing & Protocols
 
-- [Contribution Guide](CONTRIBUTING.md)
+- [Versioning](CONTRIBUTING.md#versioning)
+- [Coding Standards](CONTRIBUTING.md#coding-standards)
+- [Pull Requests](CONTRIBUTING.md#pull-requests)
 
 ## License
 
