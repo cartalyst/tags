@@ -11,6 +11,6 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
-### v1.0.0 - TBA
+### v1.0.0 - 2015-01-20
 
-- Initial release.
+- Initial stable release.
