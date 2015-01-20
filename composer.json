@@ -2,9 +2,10 @@
     "name": "cartalyst/tags",
     "description": "Easily add tags to your Eloquent models.",
     "keywords": [
-        "tags",
+        "php",
+        "cartalyst",
         "laravel",
-        "cartalyst"
+        "tags"
     ],
     "license": "BSD-3-Clause",
     "authors": [
@@ -30,7 +31,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/database": "~4.2|~5.0"
+        "illuminate/database": "~4.2"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
