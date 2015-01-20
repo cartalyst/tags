@@ -202,9 +202,14 @@ trait TaggableTrait
      */
     public function removeTag($name)
     {
-        if ($tag = $this->createTagsModel()
-            ->whereNamespace($this->getEntityClassName())
-            ->whereName($name)->first()) {
+        $namespace = $this->getEntityClassName();
+
+        $tag = $this
+            ->createTagsModel()
+            ->whereNamespace($namespace)->whereName($name)->first()
+        ;
+
+        if ($tag) {
             $tag->update([ 'count' => $tag->count - 1 ]);
 
             $this->tags()->detach($tag);
