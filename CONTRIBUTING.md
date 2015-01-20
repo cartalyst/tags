@@ -26,18 +26,16 @@ The pull request process differs for new features and bugs.
 
 Pull requests for bugs may be sent without creating any proposal issue. If you believe that you know of a solution for a bug that has been filed, please leave a comment detailing your proposed fix or create a pull request with the fix mentioning that issue id.
 
-### Proposal Requests
+### Proposal \ Feature Requests
 
-If you have a proposal, you may create an issue with `[Proposal]` in the title.
+If you have a proposal or a feature request, you may create an issue with `[Proposal]` in the title.
 
 The proposal should also describe the new feature, as well as implementation ideas. The proposal will then be reviewed and either approved or denied. Once a proposal is approved, a pull request may be created implementing the new feature.
 
-### Feature Requests
-
-If you have an idea for a new feature you would like to see added to the package, you may create an issue with `[Request]` in the title. The feature request will then be reviewed by a core contributor.
-
 ### Which Branch?
 
-**ALL** bug fixes should be made to the branch which they belong. Bug fixes should never be sent to the `master` branch unless they fix features that exist only in the upcoming release.
+**ALL** bug fixes should be made to the branch which they belong to. Bug fixes should never be sent to the `master` branch unless they fix features that exist only in the upcoming release.
+
+If a bug is found on a `minor` version `1.1` and it exists on the `major` version `1.0`, the bug fix should be sent to the `1.0` branch which will be afterwards merged into the `1.1` branch.
 
 > **Note:** Pull requests which do not follow these guidelines will be closed without any further notice.
