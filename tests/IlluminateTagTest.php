@@ -37,7 +37,27 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_delete_a_tag_and_its_tagged_relations()
     {
+        $tag = m::mock('Cartalyst\Tags\IlluminateTag[tagged]');
 
+        $this->addMockConnection($tag);
+
+        $tag->exists = true;
+        $tag->shouldReceive('tagged')
+            ->once()
+            ->andReturn($relationship = m::mock('Illuminate\Database\Eloquent\Relations\HasMany'));
+
+        $relationship->shouldReceive('delete')
+            ->once();
+
+        $tag->getConnection()
+            ->getQueryGrammar()
+            ->shouldReceive('compileDelete');
+
+        $tag->getConnection()
+            ->shouldReceive('delete')
+            ->once();
+
+        $tag->delete();
     }
 
     /** @test */
