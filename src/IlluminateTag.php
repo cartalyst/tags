@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    1.0.0
+ * @version    1.0.1
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2015, Cartalyst LLC
@@ -46,6 +46,25 @@ class IlluminateTag extends Model
     ];
 
     /**
+     * The tagged entities model.
+     *
+     * @var string
+     */
+    protected static $taggedModel = 'Cartalyst\Tags\IlluminateTagged';
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete()
+    {
+        if ($this->exists) {
+            $this->tagged()->delete();
+        }
+
+        return parent::delete();
+    }
+
+    /**
      * Returns the polymorphic relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
@@ -53,6 +72,16 @@ class IlluminateTag extends Model
     public function taggable()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Returns this tag tagged entities.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tagged()
+    {
+        return $this->hasMany(static::$taggedModel);
     }
 
     /**
@@ -65,5 +94,38 @@ class IlluminateTag extends Model
     public function scopeName(Builder $query, $name)
     {
         return $query->whereName($name);
+    }
+
+    /**
+     * Finds a tag by its slug.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $slug
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSlug(Builder $query, $slug)
+    {
+        return $query->whereSlug($slug);
+    }
+
+    /**
+     * Returns the tagged entities model.
+     *
+     * @return string
+     */
+    public static function getTaggedModel()
+    {
+        return static::$taggedModel;
+    }
+
+    /**
+     * Sets the tagged entities model.
+     *
+     * @param  string  $taggedModel
+     * @return void
+     */
+    public static function setTaggedModel($taggedModel)
+    {
+        static::$taggedModel = $taggedModel;
     }
 }
