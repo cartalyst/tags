@@ -35,6 +35,32 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function it_can_delete_a_tag_and_its_tagged_relations()
+    {
+        $tag = m::mock('Cartalyst\Tags\IlluminateTag[tagged]');
+
+        $this->addMockConnection($tag);
+
+        $tag->exists = true;
+        $tag->shouldReceive('tagged')
+            ->once()
+            ->andReturn($relationship = m::mock('Illuminate\Database\Eloquent\Relations\HasMany'));
+
+        $relationship->shouldReceive('delete')
+            ->once();
+
+        $tag->getConnection()
+            ->getQueryGrammar()
+            ->shouldReceive('compileDelete');
+
+        $tag->getConnection()
+            ->shouldReceive('delete')
+            ->once();
+
+        $tag->delete();
+    }
+
+    /** @test */
     public function it_has_a_taggable_relationship()
     {
         $tag = new IlluminateTag;
@@ -42,6 +68,16 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase
         $this->addMockConnection($tag);
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphTo', $tag->taggable());
+    }
+
+    /** @test */
+    public function it_has_a_tag_relationship()
+    {
+        $tag = new IlluminateTag;
+
+        $this->addMockConnection($tag);
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\HasMany', $tag->tagged());
     }
 
     /** @test */
@@ -61,6 +97,37 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase
         $tag->scopeName($query, 'foo');
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphTo', $tag->taggable());
+    }
+
+    /** @test */
+    public function it_has_a_slug_scope()
+    {
+        $tag = new IlluminateTag;
+
+        $this->addMockConnection($tag);
+
+        $query = m::mock('Illuminate\Database\Eloquent\Builder');
+
+        $query
+            ->shouldReceive('whereSlug')
+            ->with('foo')
+            ->once();
+
+        $tag->scopeSlug($query, 'foo');
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphTo', $tag->taggable());
+    }
+
+    /** @test */
+    public function it_can_get_and_set_the_tagged_model()
+    {
+        $tag = new IlluminateTag();
+
+        $this->assertEquals('Cartalyst\Tags\IlluminateTagged', $tag->getTaggedModel());
+
+        $tag->setTaggedModel('App\Models\TaggedModel');
+
+        $this->assertEquals('App\Models\TaggedModel', $tag->getTaggedModel());
     }
 
     /**
