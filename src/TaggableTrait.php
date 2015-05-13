@@ -203,11 +203,16 @@ trait TaggableTrait
      */
     public function addTag($name)
     {
-        $tag = $this->createTagsModel()->firstOrCreate([
-            'name'      => $name,
+        $tag = $this->createTagsModel()->firstOrNew([
             'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
         ]);
+
+        if (! $tag->exists) {
+            $tag->name = $name;
+
+            $tag->save();
+        }
 
         if ( ! $this->tags->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count + 1 ]);
