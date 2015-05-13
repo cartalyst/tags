@@ -94,7 +94,7 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
     {
         $taggable = new Taggable;
 
-        $taggable = $this->addMockConnection($taggable, true);
+        $taggable = $this->addMockConnection($taggable);
 
         $taggable
             ->getConnection()->getQueryGrammar()
@@ -133,12 +133,9 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
         $taggable
             ->getConnection()->getQueryGrammar()
             ->shouldReceive('compileInsert')
-            ->once()
         ;
 
         $taggable->tag('foo');
-
-        $taggable->tag(null);
     }
 
     /** @test */
@@ -146,7 +143,7 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
     {
         $taggable = new Taggable;
 
-        $taggable = $this->addMockConnection($taggable, true);
+        $taggable = $this->addMockConnection($taggable);
 
         $taggable
             ->getConnection()->getQueryGrammar()
@@ -184,7 +181,7 @@ class TaggableTraitTest extends PHPUnit_Framework_TestCase
     {
         $taggable = new Taggable;
 
-        $taggable = $this->addMockConnection($taggable, true);
+        $taggable = $this->addMockConnection($taggable);
 
         $taggable
             ->getConnection()->getQueryGrammar()

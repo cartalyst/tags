@@ -11,6 +11,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v1.0.3 - 2015-05-13
+
+`REVISED`
+
+- Tightened dependencies to Laravel 4.2.x, 5.0.x.
+- Allow tagging by slug.
+
 #### v1.0.2 - 2015-02-15
 
 `REVISED`
