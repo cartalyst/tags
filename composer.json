@@ -31,7 +31,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/database": "~4.2|5.0.*"
+        "illuminate/database": "5.1.*"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
@@ -49,8 +49,8 @@
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "1.1.x-dev"
+            "dev-master": "2.1.x-dev"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
