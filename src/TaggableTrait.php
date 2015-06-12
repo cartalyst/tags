@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    1.0.3
+ * @version    1.0.4
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2015, Cartalyst LLC
@@ -122,8 +122,7 @@ trait TaggableTrait
     {
         $tags = (new static)->prepareTags($tags);
 
-        foreach ($tags as $tag)
-        {
+        foreach ($tags as $tag) {
             $query->whereHas('tags', function ($query) use ($type, $tag) {
                 $query->where($type, $tag);
             });
@@ -186,12 +185,12 @@ trait TaggableTrait
         $tagsToDel = array_diff($entityTags, $tags);
 
         // Detach the tags
-        if ( ! empty($tagsToDel)) {
+        if (! empty($tagsToDel)) {
             $this->untag($tagsToDel);
         }
 
         // Attach the tags
-        if ( ! empty($tagsToAdd)) {
+        if (! empty($tagsToAdd)) {
             $this->tag($tagsToAdd);
         }
 
@@ -214,7 +213,7 @@ trait TaggableTrait
             $tag->save();
         }
 
-        if ( ! $this->tags->contains($tag->id)) {
+        if (! $this->tags->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count + 1 ]);
 
             $this->tags()->attach($tag);
@@ -231,7 +230,7 @@ trait TaggableTrait
         $tag = $this
             ->createTagsModel()
             ->whereNamespace($namespace)
-            ->where(function($query) use ($name) {
+            ->where(function ($query) use ($name) {
                 $query
                     ->orWhere('name', $name)
                     ->orWhere('slug', $name)
