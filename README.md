@@ -4,6 +4,8 @@
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
+The package requires PHP 5.4+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
+
 An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
 ## Documentation
