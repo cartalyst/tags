@@ -1,6 +1,6 @@
 # Tags
 
-[![Build Status](http://ci.cartalyst.com/build-status/svg/33)](http://ci.cartalyst.com/build-status/view/33)
+[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=1.0)](https://travis-ci.org/cartalyst/tags)
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
