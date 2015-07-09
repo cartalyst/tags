@@ -11,6 +11,16 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v2.0.1 - 2015-07-09
+
+`ADDED`
+
+- `.gitattributes` and `.travis.yml` file.
+
+`UPDATED`
+
+- Build status badge to Travis CI.
+
 #### v2.0.0 - 2015-06-12
 
 `ADDED`
@@ -20,6 +30,16 @@ We do not give estimated times for completion on `Accepted` Proposals.
 `REMOVED`
 
 - Laravel 4.2 and 5.0 support.
+
+#### v1.0.5 - 2015-07-09
+
+`ADDED`
+
+- `.gitattributes` and `.travis.yml` file.
+
+`UPDATED`
+
+- Build status badge to Travis CI.
 
 #### v1.0.4 - 2015-06-12
 
