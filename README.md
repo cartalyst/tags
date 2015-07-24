@@ -21,13 +21,14 @@ Raw files can be found via this projects docs/version branch.
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
+- [2.0](CHANGELOG.md) - 2015-06-12
 - [1.0](CHANGELOG.md) - 2015-01-20
 
 ## Support
 
 The following support channels can be used for contact.
 
-- [Twitter](https://cartalyst.com/@twitter)
+- [Twitter](https://twitter.com/@cartalyst)
 - [Email](mailto:help@cartalyst.com)
 
 Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).

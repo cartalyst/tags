@@ -39,12 +39,7 @@
         "patchwork/utf8": "~1.1"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
-        "psr-4": {
-            "Cartalyst\\Tags\\": "src/"
-        }
+        "psr-4": { "Cartalyst\\Tags\\": "src/" }
     },
     "extra": {
         "component": "package",
