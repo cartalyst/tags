@@ -8,9 +8,17 @@ Integrating the package into Laravel 5.1 is incredibly easy.
 
 #### Migrations
 
-Run the following command to run the Tags migrations:
+Add the `Cartalyst\Tags\TagsServiceProvider` Service Provider into the `providers` array on your `config/app.php` file and run the following on your terminal to publish the migrations:
 
-`php artisan migrate --path=vendor/cartalyst/tags/src/migrations`
+```sh
+$ php artisan vendor:publish --provider="Cartalyst\Tags\TagsServiceProvider" --tag="migrations"
+```
+
+If you don't want to publish the migrations, just run the following on your terminal:
+
+```sh
+$ php artisan migrate --path=vendor/cartalyst/tags/resources/migrations
+```
 
 #### Setup Model(s)
 
