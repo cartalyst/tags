@@ -11,7 +11,17 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
-#### v2.0.1 - 2015-07-09
+### v2.0.2 - 2015-07-24
+
+`ADDED`
+
+- Service Provider to allow migrations publishing.
+
+`REVISED`
+
+- Migrations path.
+
+### v2.0.1 - 2015-07-09
 
 `ADDED`
 
@@ -21,7 +31,7 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 - Build status badge to Travis CI.
 
-#### v2.0.0 - 2015-06-12
+### v2.0.0 - 2015-06-12
 
 `ADDED`
 
@@ -31,7 +41,7 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 - Laravel 4.2 and 5.0 support.
 
-#### v1.0.5 - 2015-07-09
+### v1.0.5 - 2015-07-09
 
 `ADDED`
 
@@ -41,7 +51,7 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 - Build status badge to Travis CI.
 
-#### v1.0.4 - 2015-06-12
+### v1.0.4 - 2015-06-12
 
 `REVISED`
 
@@ -52,26 +62,26 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 - Minimum stability on `composer.json` to `stable`.
 
-#### v1.0.3 - 2015-05-13
+### v1.0.3 - 2015-05-13
 
 `REVISED`
 
 - Tightened dependencies to Laravel 4.2.x, 5.0.x.
 - Allow tagging by slug.
 
-#### v1.0.2 - 2015-02-15
+### v1.0.2 - 2015-02-15
 
 `REVISED`
 
 - Loosened dependencies to work with Laravel 5.
 
-#### v1.0.1 - 2015-01-21
+### v1.0.1 - 2015-01-21
 
 `ADDED`
 
 - When deleting a Tag, it's now deleting the corresponding tagged entities tags.
 - Added a `scopeSlug` to the IlluminateTag model to maintain consistency.
 
-#### v1.0.0 - 2015-01-20
+### v1.0.0 - 2015-01-20
 
 - Initial stable release.
