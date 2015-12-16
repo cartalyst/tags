@@ -30,8 +30,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "illuminate/database": "5.1.*"
+        "php": ">=5.5.9",
+        "illuminate/database": "~5.1"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
@@ -39,12 +39,7 @@
         "patchwork/utf8": "~1.1"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
-        "psr-4": {
-            "Cartalyst\\Tags\\": "src/"
-        }
+        "psr-4": { "Cartalyst\\Tags\\": "src/" }
     },
     "extra": {
         "component": "package",
