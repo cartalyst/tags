@@ -63,7 +63,7 @@ class MigrationCartalystTagsCreateTables extends Migration
         $tables = [ 'tagged', 'tags' ];
 
         foreach ($tables as $table) {
-            Schema::dropIfExist($table);
+            Schema::dropIfExists($table);
         }
     }
 }
