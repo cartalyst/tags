@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v2.1.0 - 2016-01-10
+
+`ADDED`
+
+- Scope `withoutTag`.
+
 ### v2.0.3 - 2016-01-10
 
 `FIXED`
