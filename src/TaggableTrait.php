@@ -144,6 +144,18 @@ trait TaggableTrait
     }
 
     /**
+    * {@inheritdoc}
+    */
+    public static function scopeWithoutTag(Builder $query, $tags, $type = 'slug')
+    {
+        $tags = (new static)->prepareTags($tags);
+
+        return $query->whereDoesntHave('tags', function ($query) use ($type, $tags) {
+            $query->whereIn($type, $tags);
+        });
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function tag($tags)

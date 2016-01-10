@@ -157,6 +157,22 @@ class TaggableTraitTest extends FunctionalTestCase
     }
 
     /** @test */
+    public function it_can_retrieve_without_the_given_tags()
+    {
+        $post1 = $this->createPost();
+        $post2 = $this->createPost();
+
+        $post1->tag('foo, bar, baz');
+        $post2->tag('foo, bat');
+
+        $this->assertcount(0, Post::withoutTag('foo')->get());
+
+        $this->assertcount(1, Post::withoutTag('bar')->get());
+
+        $this->assertcount(1, Post::withoutTag('bat')->get());
+    }
+
+    /** @test */
     public function it_can_get_and_set_the_tags_delimiter()
     {
         $post = new Post;
