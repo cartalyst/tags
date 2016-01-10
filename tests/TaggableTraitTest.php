@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Tags\Tests;
+<?php
 
 /**
  * Part of the Tags package.
@@ -18,271 +18,171 @@
  * @link       http://cartalyst.com
  */
 
-use Mockery as m;
-use PHPUnit_Framework_TestCase;
-use Cartalyst\Tags\TaggableTrait;
-use Cartalyst\Tags\TaggableInterface;
-use Illuminate\Database\Eloquent\Model;
+namespace Cartalyst\Tags\Tests;
 
-class TaggableTraitTest extends PHPUnit_Framework_TestCase
+use Cartalyst\Tags\IlluminateTag;
+use Cartalyst\Tags\Tests\Stubs\Post;
+use Cartalyst\Tags\Tests\Stubs\Post2;
+
+class TaggableTraitTest extends FunctionalTestCase
 {
-    /**
-     * Close mockery.
-     *
-     * @return void
-     */
-    public function tearDown()
+    /** @test */
+    public function it_can_add_a_single_tag()
     {
-        m::close();
+        $post1 = $this->createPost();
+        $post2 = $this->createPost();
+
+        $post1->tag('foo');
+        $post2->tag([ 'foo' ]);
+
+        $post1 = $post1->fresh();
+        $post2 = $post2->fresh();
+
+        $this->assertSame([ 'foo' ], $post1->tags->lists('slug')->toArray());
+        $this->assertSame([ 'foo' ], $post2->tags->lists('slug')->toArray());
     }
 
     /** @test */
-    public function it_can_retrieve_tags()
+    public function it_can_add_multiple_tags()
     {
-        $taggable = new Taggable;
+        $post1 = $this->createPost();
+        $post2 = $this->createPost();
+        $post3 = $this->createPost();
 
-        $this->addMockConnection($taggable);
+        $post1->tag('foo, bar');
+        $post2->tag([ 'foo', 'bar' ]);
+        $post3->tag(null);
 
-        $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Relations\MorphToMany', $taggable->tags()
-        );
-    }
+        $post1 = $post1->fresh();
+        $post2 = $post2->fresh();
+        $post3 = $post3->fresh();
 
-    /** @test */
-    public function it_can_retrieve_by_the_given_tags()
-    {
-        $taggable = new Taggable;
-
-        $this->addMockConnection($taggable);
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileSelect')
-        ;
-
-        $taggable->getConnection()->shouldReceive('select');
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('wrap')->times(3)
-        ;
-
-        $taggable->whereTag('foo, bar');
-
-        $taggable->withTag('foo');
-    }
-
-    /** @test */
-    public function it_can_retrieve_all_tags()
-    {
-        $taggable = new Taggable;
-
-        $this->addMockConnection($taggable);
-
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Builder', $taggable->allTags());
-
-
-        $taggable = new Taggable2;
-
-        $this->addMockConnection($taggable);
-
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Builder', $taggable->allTags());
-    }
-
-    /** @test */
-    public function it_can_tag()
-    {
-        $taggable = new Taggable;
-
-        $taggable = $this->addMockConnection($taggable);
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileSelect')
-        ;
-
-        $taggable->getConnection()->shouldReceive('select');
-
-        $taggable
-            ->getConnection()->getPostProcessor()
-            ->shouldReceive('processSelect')
-            ->twice()->andReturn([])
-        ;
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileInsertGetId')
-            ->once()
-        ;
-
-        $taggable
-            ->getConnection()->getPostProcessor()
-            ->shouldReceive('processInsertGetId')
-            ->once()
-        ;
-
-        $taggable->getConnection()->shouldReceive('update');
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileUpdate')
-        ;
-
-        $taggable->getConnection()->shouldReceive('insert');
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileInsert')
-        ;
-
-        $taggable->tag('foo');
+        $this->assertSame([ 'foo', 'bar' ], $post1->tags->lists('slug')->toArray());
+        $this->assertSame([ 'foo', 'bar' ], $post2->tags->lists('slug')->toArray());
+        $this->assertSame([ ], $post3->tags->lists('slug')->toArray());
     }
 
     /** @test */
     public function it_can_untag()
     {
-        $taggable = new Taggable;
+        $post = $this->createPost();
 
-        $taggable = $this->addMockConnection($taggable);
+        $post->tag('foo');
 
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileSelect')
-        ;
+        $post = $post->fresh();
 
-        $taggable->getConnection()->shouldReceive('select');
+        $this->assertSame([ 'foo' ], $post->tags->lists('slug')->toArray());
 
-        $taggable
-            ->getConnection()->getPostProcessor()
-            ->shouldReceive('processSelect')
-            ->once()->andReturn([ 'foo' ])
-        ;
+        $post->untag('foo');
 
-        $taggable->getConnection()->shouldReceive('update');
+        $post = $post->fresh();
 
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileUpdate')
-        ;
-
-        $taggable->getConnection()->shouldReceive('delete');
-
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileDelete')
-            ->once()
-        ;
-
-        $taggable->untag('foo');
+        $this->assertSame([  ], $post->tags->lists('slug')->toArray());
     }
 
     /** @test */
     public function it_can_remove_all_tags()
     {
-        $taggable = new Taggable;
+        $post = $this->createPost();
 
-        $taggable = $this->addMockConnection($taggable);
+        $post->tag('foo, bar, baz');
 
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileSelect')
-        ;
+        $post = $post->fresh();
 
-        $taggable->getConnection()->shouldReceive('select');
+        $this->assertCount(3, $post->tags);
 
-        $taggable
-            ->getConnection()->getPostProcessor()
-            ->shouldReceive('processSelect')
-            ->once()->andReturn([ 'foo' ])
-        ;
+        $post->untag();
 
-        $taggable->getConnection()->shouldReceive('update');
+        $post = $post->fresh();
 
-        $taggable
-            ->getConnection()->getQueryGrammar()
-            ->shouldReceive('compileUpdate')
-        ;
-
-        $taggable->getConnection()->shouldReceive('delete');
-
-        $taggable->untag();
+        $this->assertCount(0, $post->tags);
     }
 
     /** @test */
     public function it_can_set_tags()
     {
-        (new Taggable)->setTags('foo, bar');
+        $post = $this->createPost();
+
+        $post->tag('baz');
+
+        $post = $post->fresh();
+
+        $post->setTags('foo, bar');
+
+        $post = $post->fresh();
+
+        $this->assertSame([ 'foo', 'bar' ], $post->tags->lists('slug')->toArray());
     }
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
-    public function test_static_setters_and_getters()
+    /** @test */
+    public function it_can_retrieve_tags()
     {
-        $taggable = new Taggable;
+        $post = $this->createPost();
 
-        // Delimiter
-        $this->assertEquals(',', $taggable->getTagsDelimiter());
+        $post->tag('foo, bar, baz');
 
-        $taggable->setTagsDelimiter('#');
+        $post = $post->fresh();
 
-        $this->assertEquals('#', $taggable->getTagsDelimiter());
-
-        // Model
-        $this->assertEquals('Cartalyst\Tags\IlluminateTag', $taggable->getTagsModel());
-
-        $taggable->setTagsModel('Foo');
-
-        $this->assertEquals('Foo', $taggable->getTagsModel());
-
-        // Slug generator
-        $this->assertEquals('Illuminate\Support\Str::slug', $taggable->getSlugGenerator());
-
-        $taggable->setSlugGenerator('Foo');
-
-        $this->assertEquals('Foo', $taggable->getSlugGenerator());
+        $this->assertCount(3, $post->tags);
     }
 
-    /**
-     * Adds a mock connection to the object.
-     *
-     * @param  mixed  $model
-     * @return void
-     */
-    protected function addMockConnection($model)
+    /** @test */
+    public function it_can_retrieve_all_tags()
     {
-        $model->setConnectionResolver(
-            $resolver = m::mock('Illuminate\Database\ConnectionResolverInterface')
-        );
+        $post1 = $this->createPost();
+        $post2 = $this->createPost();
 
-        $resolver
-            ->shouldReceive('connection')
-            ->andReturn(m::mock('Illuminate\Database\Connection'))
-        ;
+        $post1->tag('foo, bar, baz');
+        $post2->tag('fooo');
 
-        $model
-            ->getConnection()->shouldReceive('getQueryGrammar')
-            ->andReturn(m::mock('Illuminate\Database\Query\Grammars\Grammar'))
-        ;
-
-        $model
-            ->getConnection()->shouldReceive('getPostProcessor')
-            ->andReturn(m::mock('Illuminate\Database\Query\Processors\Processor'))
-        ;
-
-        return $model;
+        $this->assertCount(4, Post::allTags()->get());
+        $this->assertCount(0, Post2::allTags()->get());
     }
-}
 
-class Taggable extends Model implements TaggableInterface
-{
-    use TaggableTrait;
-}
+    /** @test */
+    public function it_can_retrieve_by_the_given_tags()
+    {
+        $post1 = $this->createPost();
+        $post2 = $this->createPost();
 
-class Taggable2 extends Model implements TaggableInterface
-{
-    use TaggableTrait;
+        $post1->tag('foo, bar, baz');
+        $post2->tag('foo, bat');
 
-    protected static $entityNamespace = 'foo';
+
+        $this->assertcount(1, Post::whereTag('foo, bar')->get());
+
+        $this->assertcount(2, Post::withTag('foo')->get());
+
+        $this->assertcount(1, Post::withTag('bat')->get());
+    }
+
+    /** @test */
+    public function it_can_get_and_set_the_tags_delimiter()
+    {
+        $post = new Post;
+
+        $post->setTagsDelimiter(',');
+
+        $this->assertSame(',', $post->getTagsDelimiter());
+    }
+
+    /** @test */
+    public function it_can_get_and_set_the_tags_model()
+    {
+        $post = new Post;
+
+        $post->setTagsModel(IlluminateTag::class);
+
+        $this->assertSame(IlluminateTag::class, $post->getTagsModel());
+    }
+
+    /** @test */
+    public function it_can_get_and_set_the_slug_generator()
+    {
+        $post = new Post;
+
+        $post->setSlugGenerator('Illuminate\Support\Str::slug');
+
+        $this->assertSame('Illuminate\Support\Str::slug', $post->getSlugGenerator());
+    }
 }

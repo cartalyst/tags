@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Tags\Tests;
+<?php
 
 /**
  * Part of the Tags package.
@@ -18,46 +18,34 @@
  * @link       http://cartalyst.com
  */
 
-use Mockery as m;
-use PHPUnit_Framework_TestCase;
+namespace Cartalyst\Tags\Tests;
+
 use Cartalyst\Tags\IlluminateTag;
+use Cartalyst\Tags\IlluminateTagged;
+use Cartalyst\Tags\Tests\Stubs\Post;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class IlluminateTagTest extends PHPUnit_Framework_TestCase
+class IlluminateTagTest extends FunctionalTestCase
 {
-    /**
-     * Close mockery.
-     *
-     * @return void
-     */
-    public function tearDown()
-    {
-        m::close();
-    }
-
     /** @test */
     public function it_can_delete_a_tag_and_its_tagged_relations()
     {
-        $tag = m::mock('Cartalyst\Tags\IlluminateTag[tagged]');
+        $post = $this->createPost();
 
-        $this->addMockConnection($tag);
+        $post->tag('foo, bar');
 
-        $tag->exists = true;
-        $tag->shouldReceive('tagged')
-            ->once()
-            ->andReturn($relationship = m::mock('Illuminate\Database\Eloquent\Relations\HasMany'));
+        $post = $post->fresh();
 
-        $relationship->shouldReceive('delete')
-            ->once();
+        $this->assertCount(2, $post->tags);
 
-        $tag->getConnection()
-            ->getQueryGrammar()
-            ->shouldReceive('compileDelete');
-
-        $tag->getConnection()
-            ->shouldReceive('delete')
-            ->once();
+        $tag = IlluminateTag::first();
 
         $tag->delete();
+
+        $post = $post->fresh();
+
+        $this->assertCount(1, $post->tags);
     }
 
     /** @test */
@@ -65,9 +53,7 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase
     {
         $tag = new IlluminateTag;
 
-        $this->addMockConnection($tag);
-
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphTo', $tag->taggable());
+        $this->assertInstanceOf(MorphTo::class, $tag->taggable());
     }
 
     /** @test */
@@ -75,83 +61,32 @@ class IlluminateTagTest extends PHPUnit_Framework_TestCase
     {
         $tag = new IlluminateTag;
 
-        $this->addMockConnection($tag);
-
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\HasMany', $tag->tagged());
+        $this->assertInstanceOf(HasMany::class, $tag->tagged());
     }
 
     /** @test */
     public function it_has_a_name_scope()
     {
-        $tag = new IlluminateTag;
+        IlluminateTag::create([ 'name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo' ]);
 
-        $this->addMockConnection($tag);
-
-        $query = m::mock('Illuminate\Database\Eloquent\Builder');
-
-        $query
-            ->shouldReceive('whereName')
-            ->with('foo')
-            ->once();
-
-        $tag->scopeName($query, 'foo');
-
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphTo', $tag->taggable());
+        $this->assertCount(1, IlluminateTag::name('Foo')->get());
     }
 
     /** @test */
     public function it_has_a_slug_scope()
     {
-        $tag = new IlluminateTag;
+        IlluminateTag::create([ 'name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo' ]);
 
-        $this->addMockConnection($tag);
-
-        $query = m::mock('Illuminate\Database\Eloquent\Builder');
-
-        $query
-            ->shouldReceive('whereSlug')
-            ->with('foo')
-            ->once();
-
-        $tag->scopeSlug($query, 'foo');
-
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphTo', $tag->taggable());
+        $this->assertCount(1, IlluminateTag::slug('foo')->get());
     }
 
     /** @test */
     public function it_can_get_and_set_the_tagged_model()
     {
-        $tag = new IlluminateTag();
+        $tag = new IlluminateTag;
 
-        $this->assertEquals('Cartalyst\Tags\IlluminateTagged', $tag->getTaggedModel());
+        $tag->setTaggedModel(IlluminateTagged::class);
 
-        $tag->setTaggedModel('App\Models\TaggedModel');
-
-        $this->assertEquals('App\Models\TaggedModel', $tag->getTaggedModel());
-    }
-
-    /**
-     * Adds a mock connection to the object.
-     *
-     * @param  mixed  $model
-     * @return void
-     */
-    protected function addMockConnection($model)
-    {
-        $model->setConnectionResolver(
-            $resolver = m::mock('Illuminate\Database\ConnectionResolverInterface')
-        );
-
-        $resolver
-            ->shouldReceive('connection')
-            ->andReturn(m::mock('Illuminate\Database\Connection'));
-
-        $model->getConnection()
-            ->shouldReceive('getQueryGrammar')
-            ->andReturn(m::mock('Illuminate\Database\Query\Grammars\Grammar'));
-
-        $model->getConnection()
-            ->shouldReceive('getPostProcessor')
-            ->andReturn(m::mock('Illuminate\Database\Query\Processors\Processor'));
+        $this->assertEquals(IlluminateTagged::class, $tag->getTaggedModel());
     }
 }
