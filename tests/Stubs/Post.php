@@ -18,19 +18,17 @@
  * @link       http://cartalyst.com
  */
 
-namespace Cartalyst\Tags;
+namespace Cartalyst\Tags\Tests\Stubs;
 
+use Cartalyst\Tags\TaggableTrait;
+use Cartalyst\Tags\TaggableInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class IlluminateTagged extends Model
+class Post extends Model implements TaggableInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $timestamps = false;
+    use TaggableTrait;
 
-    /**
-     * {@inheritdoc}
-     */
-    public $table = 'tagged';
+    public $table = 'posts';
+
+    protected $fillable = [ 'title' ];
 }
