@@ -81,7 +81,7 @@ class IlluminateTag extends Model
      */
     public function tagged()
     {
-        return $this->hasMany(static::$taggedModel);
+        return $this->hasMany(static::$taggedModel, 'tag_id');
     }
 
     /**
