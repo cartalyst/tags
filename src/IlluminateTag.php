@@ -14,7 +14,7 @@
  * @version    2.0.2
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -26,17 +26,17 @@ use Illuminate\Database\Eloquent\Builder;
 class IlluminateTag extends Model
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public $timestamps = false;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public $table = 'tags';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected $fillable = [
         'name',
@@ -53,7 +53,7 @@ class IlluminateTag extends Model
     protected static $taggedModel = 'Cartalyst\Tags\IlluminateTagged';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function delete()
     {

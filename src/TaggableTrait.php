@@ -14,7 +14,7 @@
  * @version    2.0.2
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -46,7 +46,7 @@ trait TaggableTrait
     protected static $slugGenerator = 'Illuminate\Support\Str::slug';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function getTagsDelimiter()
     {
@@ -54,7 +54,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function setTagsDelimiter($delimiter)
     {
@@ -64,7 +64,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function getTagsModel()
     {
@@ -72,7 +72,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function setTagsModel($model)
     {
@@ -80,7 +80,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function getSlugGenerator()
     {
@@ -88,7 +88,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function setSlugGenerator($slugGenerator)
     {
@@ -96,7 +96,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function tags()
     {
@@ -104,7 +104,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function allTags()
     {
@@ -116,7 +116,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function scopeWhereTag(Builder $query, $tags, $type = 'slug')
     {
@@ -132,7 +132,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function scopeWithTag(Builder $query, $tags, $type = 'slug')
     {
@@ -144,7 +144,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function tag($tags)
     {
@@ -156,7 +156,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function untag($tags = null)
     {
@@ -170,7 +170,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setTags($tags, $type = 'name')
     {
@@ -198,7 +198,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addTag($name)
     {
@@ -221,7 +221,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function removeTag($name)
     {
@@ -247,7 +247,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function prepareTags($tags)
     {
@@ -267,7 +267,7 @@ trait TaggableTrait
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function createTagsModel()
     {

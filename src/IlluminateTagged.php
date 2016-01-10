@@ -14,7 +14,7 @@
  * @version    2.0.2
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -25,12 +25,12 @@ use Illuminate\Database\Eloquent\Model;
 class IlluminateTagged extends Model
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public $timestamps = false;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public $table = 'tagged';
 }

@@ -10,16 +10,16 @@ An open source package by [Cartalyst](https://cartalyst.com), code well, rock on
 
 ## Documentation
 
-Reader-friendly Documentation can be found here. [Tags Manual](https://cartalyst.com/manual/tags).
+Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/2.0).
 
 Raw files can be found via this projects docs/version branch.
 
 - [2.0](https://github.com/cartalyst/tags/tree/docs/2.0)
 - [1.0](https://github.com/cartalyst/tags/tree/docs/1.0)
 
-## Changelog
+## Change Log
 
-Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
+Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
 - [2.0](CHANGELOG.md) - 2015-06-12
 - [1.0](CHANGELOG.md) - 2015-01-20
@@ -28,7 +28,7 @@ Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a fu
 
 The following support channels can be used for contact.
 
-- [Twitter](https://twitter.com/@cartalyst)
+- [Twitter](https://twitter.com/cartalyst)
 - [Email](mailto:help@cartalyst.com)
 
 Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).
@@ -43,4 +43,4 @@ Bug reports, feature requests, and pull requests can be submitted by following o
 
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
-© 2011-2015 Cartalyst LLC, All rights reserved.
+© 2011-2016 Cartalyst LLC, All rights reserved.
