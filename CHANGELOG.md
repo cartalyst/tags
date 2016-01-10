@@ -11,6 +11,16 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v2.0.3 - 2016-01-10
+
+`FIXED`
+
+- Fix issue when trying to fetch the tagged entities from a tag.
+
+`REVISED`
+
+- Improve tests.
+
 ### v2.0.2 - 2015-07-24
 
 `ADDED`
