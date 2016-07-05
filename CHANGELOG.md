@@ -17,6 +17,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 - Scope `withoutTag`.
 
+### v2.0.4 - 2016-07-05
+
+`FIXED`
+
+- Issue with models having the `$table` property as public now allowing for proper extending.
+
 ### v2.0.3 - 2016-01-10
 
 `FIXED`
