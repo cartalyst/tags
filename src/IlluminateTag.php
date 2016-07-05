@@ -28,12 +28,12 @@ class IlluminateTag extends Model
     /**
      * {@inheritdoc}
      */
-    public $timestamps = false;
+    protected $table = 'tags';
 
     /**
      * {@inheritdoc}
      */
-    public $table = 'tags';
+    public $timestamps = false;
 
     /**
      * {@inheritdoc}

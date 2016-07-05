@@ -27,10 +27,10 @@ class IlluminateTagged extends Model
     /**
      * {@inheritdoc}
      */
-    public $timestamps = false;
+    protected $table = 'tagged';
 
     /**
      * {@inheritdoc}
      */
-    public $table = 'tagged';
+    public $timestamps = false;
 }
