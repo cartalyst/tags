@@ -38,8 +38,8 @@ class TaggableTraitTest extends FunctionalTestCase
         $post1 = $post1->fresh();
         $post2 = $post2->fresh();
 
-        $this->assertSame([ 'foo' ], $post1->tags->lists('slug')->toArray());
-        $this->assertSame([ 'foo' ], $post2->tags->lists('slug')->toArray());
+        $this->assertSame([ 'foo' ], $post1->tags->pluck('slug')->toArray());
+        $this->assertSame([ 'foo' ], $post2->tags->pluck('slug')->toArray());
     }
 
     /** @test */
@@ -57,9 +57,9 @@ class TaggableTraitTest extends FunctionalTestCase
         $post2 = $post2->fresh();
         $post3 = $post3->fresh();
 
-        $this->assertSame([ 'foo', 'bar' ], $post1->tags->lists('slug')->toArray());
-        $this->assertSame([ 'foo', 'bar' ], $post2->tags->lists('slug')->toArray());
-        $this->assertSame([ ], $post3->tags->lists('slug')->toArray());
+        $this->assertSame([ 'foo', 'bar' ], $post1->tags->pluck('slug')->toArray());
+        $this->assertSame([ 'foo', 'bar' ], $post2->tags->pluck('slug')->toArray());
+        $this->assertEmpty($post3->tags->pluck('slug')->toArray());
     }
 
     /** @test */
@@ -71,13 +71,13 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post = $post->fresh();
 
-        $this->assertSame([ 'foo' ], $post->tags->lists('slug')->toArray());
+        $this->assertSame([ 'foo' ], $post->tags->pluck('slug')->toArray());
 
         $post->untag('foo');
 
         $post = $post->fresh();
 
-        $this->assertSame([  ], $post->tags->lists('slug')->toArray());
+        $this->assertEmpty($post->tags->pluck('slug')->toArray());
     }
 
     /** @test */
@@ -111,7 +111,7 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post = $post->fresh();
 
-        $this->assertSame([ 'foo', 'bar' ], $post->tags->lists('slug')->toArray());
+        $this->assertSame([ 'foo', 'bar' ], $post->tags->pluck('slug')->toArray());
     }
 
     /** @test */
