@@ -21,12 +21,7 @@ Tags                                               | Laravel
 
 Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/3.0).
 
-Raw files can be found via this projects docs/version branch.
-
-- [3.0](https://github.com/cartalyst/tags/tree/docs/3.0)
-- [2.1](https://github.com/cartalyst/tags/tree/docs/2.1)
-- [2.0](https://github.com/cartalyst/tags/tree/docs/2.0)
-- [1.0](https://github.com/cartalyst/tags/tree/docs/1.0)
+Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/3.0).
 
 ## Change Log
 
