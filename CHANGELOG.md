@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v2.0.5 - 2016-09-05
+
+`REVISED`
+
+- Tightened dependencies to Laravel 5.1.x, 5.2.x.
+
 ### v2.0.4 - 2016-07-05
 
 `FIXED`
