@@ -8,6 +8,14 @@ The package requires PHP 5.5.9+ and follows the FIG standards PSR-1, PSR-2 and P
 
 An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
+## Laravel Compatibility
+
+Tags                                               | Laravel
+--------------------------------------------------- | -------------------------
+[1.0.x](https://github.com/cartalyst/tags/tree/1.0) | 4.2 & 5.0
+[2.0.x](https://github.com/cartalyst/tags/tree/2.0) | 5.1 & 5.2
+[2.1.x](https://github.com/cartalyst/tags/tree/2.1) | 5.1 & 5.2
+
 ## Documentation
 
 Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/2.1).
