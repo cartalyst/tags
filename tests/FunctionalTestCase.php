@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    2.1.2
+ * @version    3.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2016, Cartalyst LLC
@@ -34,7 +34,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
 
         $this->artisan('migrate', [
             '--database' => 'testbench',
-            '--path'     => '../resources/migrations',
+            '--realpath' => realpath(__DIR__.'/../resources/migrations'),
         ]);
 
         Schema::create('posts', function ($table) {
