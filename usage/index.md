@@ -115,7 +115,7 @@ $tags = $product->tags;
 This will return all the tags that belongs to the given Entity Namespace.
 
 ```
-$tags = Product::allTags();
+$tags = Product::allTags()->get();
 ```
 
 ### Delimiter
