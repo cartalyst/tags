@@ -17,10 +17,11 @@
     ],
     "require": {
         "php": ">=5.6.4",
-        "illuminate/database": "5.3.*"
+        "illuminate/database": "5.4.*"
     },
     "require-dev": {
-        "orchestra/testbench": "3.3.*"
+        "orchestra/testbench": "3.4.*@dev",
+        "orchestra/database": "3.4.*@dev"
     },
     "autoload": {
         "psr-4": { "Cartalyst\\Tags\\": "src/" }
@@ -31,7 +32,7 @@
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "4.0.x-dev"
         }
     },
     "minimum-stability": "stable"
