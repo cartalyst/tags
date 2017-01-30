@@ -28,7 +28,7 @@ Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/4.0).
 
 Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
-- [4.0](CHANGELOG.md) - 2017-01-25
+- [4.0](CHANGELOG.md) - 2017-01-30
 - [3.0](CHANGELOG.md) - 2016-09-06
 - [2.1](CHANGELOG.md) - 2016-01-10
 - [2.0](CHANGELOG.md) - 2015-06-12
