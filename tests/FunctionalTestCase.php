@@ -32,7 +32,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
 
-        $this->artisan('migrate', [
+        $this->loadMigrationsFrom([
             '--database' => 'testbench',
             '--realpath' => realpath(__DIR__.'/../resources/migrations'),
         ]);
@@ -65,6 +65,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             'Cartalyst\Tags\TagsServiceProvider',
+            'Orchestra\Database\ConsoleServiceProvider',
         ];
     }
 

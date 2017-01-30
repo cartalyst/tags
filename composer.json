@@ -20,8 +20,8 @@
         "illuminate/database": "5.4.*"
     },
     "require-dev": {
-        "orchestra/testbench": "3.4.*@dev",
-        "orchestra/database": "3.4.*@dev"
+        "orchestra/testbench": "^3.4",
+        "orchestra/database": "^3.3@dev"
     },
     "autoload": {
         "psr-4": { "Cartalyst\\Tags\\": "src/" }
