@@ -1,6 +1,6 @@
 # Tags
 
-[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=3.0)](https://travis-ci.org/cartalyst/tags)
+[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=4.0)](https://travis-ci.org/cartalyst/tags)
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
@@ -16,17 +16,19 @@ Tags                                               | Laravel
 [2.0.x](https://github.com/cartalyst/tags/tree/2.0) | 5.1 & 5.2
 [2.1.x](https://github.com/cartalyst/tags/tree/2.1) | 5.1 & 5.2
 [3.0.x](https://github.com/cartalyst/tags/tree/3.0) | 5.3
+[4.0.x](https://github.com/cartalyst/tags/tree/4.0) | 5.4
 
 ## Documentation
 
-Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/3.0).
+Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/4.0).
 
-Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/3.0).
+Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/4.0).
 
 ## Change Log
 
 Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
+- [4.0](CHANGELOG.md) - 2017-01-25
 - [3.0](CHANGELOG.md) - 2016-09-06
 - [2.1](CHANGELOG.md) - 2016-01-10
 - [2.0](CHANGELOG.md) - 2015-06-12
@@ -51,4 +53,4 @@ Bug reports, feature requests, and pull requests can be submitted by following o
 
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
-© 2011-2016 Cartalyst LLC, All rights reserved.
+© 2011-2017 Cartalyst LLC, All rights reserved.
