@@ -102,6 +102,17 @@ interface TaggableInterface
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function scopeWithTag(Builder $query, $tags, $type = 'slug');
+    
+    /**
+     * Returns the entities that do not have one of the given tags.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string|array  $tags
+     * @param  string  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function scopeWithoutTag(Builder $query, $tags, $type = 'slug');
+
 
     /**
      * Returns the entities that do not have one of the given tags.
