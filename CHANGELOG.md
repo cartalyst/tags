@@ -21,6 +21,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 - Laravel 5.3 support.
 
+### v3.0.1 - 2017-04-28
+
+`FIXED`
+
+- Issue with tags having names equal to SQL operators.
+- Issue when calling untag multiple times to remove the same tag.
+
 ### v3.0.0 - 2016-09-06
 
 `ADDED`
@@ -30,6 +37,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 `REMOVED`
 
 - Laravel 5.1 and 5.2 support.
+
+### v2.1.3 - 2017-04-28
+
+`FIXED`
+
+- Issue with tags having names equal to SQL operators.
+- Issue when calling untag multiple times to remove the same tag.
 
 ### v2.1.2 - 2016-09-05
 
@@ -48,6 +62,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 `ADDED`
 
 - Scope `withoutTag`.
+
+### v2.0.6 - 2017-04-28
+
+`FIXED`
+
+- Issue with tags having names equal to SQL operators.
+- Issue when calling untag multiple times to remove the same tag.
 
 ### v2.0.5 - 2016-09-05
 

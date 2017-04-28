@@ -74,6 +74,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertSame([ 'foo' ], $post->tags->pluck('slug')->toArray());
 
         $post->untag('foo');
+        $post->untag('foo');
 
         $post = $post->fresh();
 
