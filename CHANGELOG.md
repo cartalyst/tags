@@ -11,6 +11,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v4.0.1 - 2017-04-28
+
+`FIXED`
+
+- Issue with tags having names equal to SQL operators.
+- Issue when calling untag multiple times to remove the same tag.
+
 ### v4.0.0 - 2017-01-30
 
 `ADDED`
