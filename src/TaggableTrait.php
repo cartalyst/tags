@@ -14,7 +14,7 @@
  * @version    3.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2016, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -225,7 +225,7 @@ trait TaggableTrait
             $tag->save();
         }
 
-        if (! $this->tags->contains($tag->id)) {
+        if (! $this->tags()->get()->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count + 1 ]);
 
             $this->tags()->attach($tag);
@@ -237,21 +237,23 @@ trait TaggableTrait
      */
     public function removeTag($name)
     {
+        $slug = $this->generateTagSlug($name);
+
         $namespace = $this->getEntityClassName();
 
         $tag = $this
             ->createTagsModel()
             ->whereNamespace($namespace)
-            ->where(function ($query) use ($name) {
+            ->where(function ($query) use ($name, $slug) {
                 $query
-                    ->orWhere('name', $name)
-                    ->orWhere('slug', $name)
+                    ->orWhere('name', '=', $name)
+                    ->orWhere('slug', '=', $slug)
                 ;
             })
             ->first()
         ;
 
-        if ($tag) {
+        if ($tag && $this->tags()->get()->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count - 1 ]);
 
             $this->tags()->detach($tag);
