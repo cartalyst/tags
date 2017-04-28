@@ -213,7 +213,7 @@ trait TaggableTrait
             $tag->save();
         }
 
-        if (! $this->tags->contains($tag->id)) {
+        if (! $this->tags()->get()->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count + 1 ]);
 
             $this->tags()->attach($tag);
@@ -241,7 +241,7 @@ trait TaggableTrait
             ->first()
         ;
 
-        if ($tag) {
+        if ($tag && $this->tags()->get()->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count - 1 ]);
 
             $this->tags()->detach($tag);
