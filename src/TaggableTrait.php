@@ -225,15 +225,17 @@ trait TaggableTrait
      */
     public function removeTag($name)
     {
+        $slug = $this->generateTagSlug($name);
+
         $namespace = $this->getEntityClassName();
 
         $tag = $this
             ->createTagsModel()
             ->whereNamespace($namespace)
-            ->where(function ($query) use ($name) {
+            ->where(function ($query) use ($name, $slug) {
                 $query
-                    ->orWhere('name', $name)
-                    ->orWhere('slug', $name)
+                    ->orWhere('name', '=', $name)
+                    ->orWhere('slug', '=', $slug)
                 ;
             })
             ->first()
