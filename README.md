@@ -1,10 +1,10 @@
 # Tags
 
-[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=4.0)](https://travis-ci.org/cartalyst/tags)
+[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=5.0)](https://travis-ci.org/cartalyst/tags)
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
-The package requires PHP 5.6.4+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
+The package requires PHP 7.0+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
 
 An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
@@ -17,17 +17,19 @@ Tags                                               | Laravel
 [2.1.x](https://github.com/cartalyst/tags/tree/2.1) | 5.1 & 5.2
 [3.0.x](https://github.com/cartalyst/tags/tree/3.0) | 5.3
 [4.0.x](https://github.com/cartalyst/tags/tree/4.0) | 5.4
+[5.0.x](https://github.com/cartalyst/tags/tree/5.0) | 5.5
 
 ## Documentation
 
-Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/4.0).
+Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/5.0).
 
-Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/4.0).
+Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/5.0).
 
 ## Change Log
 
 Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
+- [5.0](CHANGELOG.md) - TBA
 - [4.0](CHANGELOG.md) - 2017-01-30
 - [3.0](CHANGELOG.md) - 2016-09-06
 - [2.1](CHANGELOG.md) - 2016-01-10

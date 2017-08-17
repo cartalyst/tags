@@ -11,6 +11,16 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v5.0.0 - TBA
+
+`ADDED`
+
+- Laravel 5.5 support.
+
+`REMOVED`
+
+- Laravel 5.4 support.
+
 ### v4.0.1 - 2017-04-28
 
 `FIXED`

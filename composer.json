@@ -16,13 +16,13 @@
         }
     ],
     "require": {
-        "php": ">=5.6.4",
-        "illuminate/database": "^5.5"
+        "php": ">=7.0",
+        "illuminate/database": "5.5.*"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.4",
-        "orchestra/database": "^3.3@dev",
-        "phpunit/phpunit": "^5.0"
+        "orchestra/testbench": "^3.5",
+        "orchestra/database": "^3.5",
+        "phpunit/phpunit": "^6.0"
     },
     "autoload": {
         "psr-4": { "Cartalyst\\Tags\\": "src/" }
@@ -33,7 +33,7 @@
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "4.0.x-dev"
+            "dev-master": "5.0.x-dev"
         },
         "laravel": {
             "providers": [
@@ -41,5 +41,6 @@
             ]
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
