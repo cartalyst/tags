@@ -37,7 +37,7 @@
         },
         "laravel": {
             "providers": [
-                "Cartalyst\\Cartalyst\\TagsServiceProvider"
+                "Cartalyst\\Tags\\TagsServiceProvider"
             ]
         }
     },
