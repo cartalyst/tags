@@ -4,7 +4,7 @@ Cartalyst packages are framework agnostic and as such can be integrated easily n
 
 ### Laravel
 
-Integrating the package into Laravel 5.4 is incredibly easy.
+Integrating the package into Laravel 5.5 is incredibly easy.
 
 #### Migrations
 
