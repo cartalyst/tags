@@ -11,6 +11,16 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v6.0.0 - 2018-02-07
+
+`ADDED`
+
+- Laravel 5.6 support.
+
+`REMOVED`
+
+- Laravel 5.5 support.
+
 ### v5.0.0 - 2017-08-30
 
 `ADDED`

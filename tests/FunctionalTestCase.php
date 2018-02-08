@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    5.0.0
+ * @version    6.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2017, Cartalyst LLC
@@ -65,7 +65,6 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             'Cartalyst\Tags\TagsServiceProvider',
-            'Orchestra\Database\ConsoleServiceProvider',
         ];
     }
 
