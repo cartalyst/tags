@@ -35,9 +35,6 @@ class TaggableTraitTest extends FunctionalTestCase
         $post1->tag('foo');
         $post2->tag([ 'foo' ]);
 
-        $post1 = $post1->fresh();
-        $post2 = $post2->fresh();
-
         $this->assertSame([ 'foo' ], $post1->tags->pluck('slug')->toArray());
         $this->assertSame([ 'foo' ], $post2->tags->pluck('slug')->toArray());
     }
@@ -53,10 +50,6 @@ class TaggableTraitTest extends FunctionalTestCase
         $post2->tag([ 'foo', 'bar' ]);
         $post3->tag(null);
 
-        $post1 = $post1->fresh();
-        $post2 = $post2->fresh();
-        $post3 = $post3->fresh();
-
         $this->assertSame([ 'foo', 'bar' ], $post1->tags->pluck('slug')->toArray());
         $this->assertSame([ 'foo', 'bar' ], $post2->tags->pluck('slug')->toArray());
         $this->assertEmpty($post3->tags->pluck('slug')->toArray());
@@ -69,14 +62,10 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post->tag('foo');
 
-        $post = $post->fresh();
-
         $this->assertSame([ 'foo' ], $post->tags->pluck('slug')->toArray());
 
         $post->untag('foo');
         $post->untag('foo');
-
-        $post = $post->fresh();
 
         $this->assertEmpty($post->tags->pluck('slug')->toArray());
     }
@@ -88,13 +77,9 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post->tag('foo, bar, baz');
 
-        $post = $post->fresh();
-
         $this->assertCount(3, $post->tags);
 
         $post->untag();
-
-        $post = $post->fresh();
 
         $this->assertCount(0, $post->tags);
     }
@@ -106,11 +91,7 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post->tag('baz');
 
-        $post = $post->fresh();
-
         $post->setTags('foo, bar');
-
-        $post = $post->fresh();
 
         $this->assertSame([ 'foo', 'bar' ], $post->tags->pluck('slug')->toArray());
     }
@@ -121,8 +102,6 @@ class TaggableTraitTest extends FunctionalTestCase
         $post = $this->createPost();
 
         $post->tag('foo, bar, baz');
-
-        $post = $post->fresh();
 
         $this->assertCount(3, $post->tags);
     }

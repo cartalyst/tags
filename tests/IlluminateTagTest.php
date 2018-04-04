@@ -35,8 +35,6 @@ class IlluminateTagTest extends FunctionalTestCase
 
         $post->tag('foo, bar');
 
-        $post = $post->fresh();
-
         $this->assertCount(2, $post->tags);
 
         $tag = IlluminateTag::first();

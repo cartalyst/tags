@@ -230,6 +230,8 @@ trait TaggableTrait
 
             $this->tags()->attach($tag);
         }
+
+        $this->load('tags');
     }
 
     /**
@@ -258,6 +260,8 @@ trait TaggableTrait
 
             $this->tags()->detach($tag);
         }
+
+        $this->load('tags');
     }
 
     /**
