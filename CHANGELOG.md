@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v6.0.1 - 2018-04-04
+
+`FIXED`
+
+- Issue where tags were not being reloaded after being updated.
+
 ### v6.0.0 - 2018-02-07
 
 `ADDED`
