@@ -22,9 +22,11 @@ namespace Cartalyst\Tags;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Traits\BelongsToEmpresa;
 
 class IlluminateTag extends Model
-{
+{   
+    use BelongsToEmpresa;
     /**
      * {@inheritdoc}
      */
