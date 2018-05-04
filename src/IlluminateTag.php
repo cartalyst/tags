@@ -45,6 +45,7 @@ class IlluminateTag extends Model
         'slug',
         'count',
         'namespace',
+        'empresa_id',
     ];
 
     /**
