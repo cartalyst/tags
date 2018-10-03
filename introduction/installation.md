@@ -6,7 +6,7 @@ The best and easiest way to install the Tags package is with [Composer](http://g
 
 Open your `composer.json` file and add the following to the `require` array:
 
-    "cartalyst/tags": "6.0.*"
+    "cartalyst/tags": "7.0.*"
 
 > **Note:** Make sure that after the required changes your `composer.json` file is valid by running `composer validate`.
 
