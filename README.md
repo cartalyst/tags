@@ -1,6 +1,6 @@
 # Tags
 
-[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=7.0)](https://travis-ci.org/cartalyst/tags)
+[![Build Status](https://travis-ci.org/cartalyst/tags.svg?branch=8.0)](https://travis-ci.org/cartalyst/tags)
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
@@ -20,17 +20,19 @@ Tags                                               | Laravel
 [5.0.x](https://github.com/cartalyst/tags/tree/5.0) | 5.5
 [6.0.x](https://github.com/cartalyst/tags/tree/6.0) | 5.6
 [7.0.x](https://github.com/cartalyst/tags/tree/7.0) | 5.7
+[8.0.x](https://github.com/cartalyst/tags/tree/8.0) | 5.8
 
 ## Documentation
 
-Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/7.0).
+Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/tags/8.0).
 
-Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/7.0).
+Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/8.0).
 
 ## Change Log
 
 Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
+- [8.0](CHANGELOG.md) - TBA
 - [7.0](CHANGELOG.md) - 2018-10-03
 - [6.0](CHANGELOG.md) - 2018-02-07
 - [5.0](CHANGELOG.md) - 2017-08-30
