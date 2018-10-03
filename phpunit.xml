@@ -17,7 +17,7 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">src/</directory>
+            <directory suffix=".php">./src/</directory>
             <exclude>
                 <file>./src/TagsServiceProvider.php</file>
             </exclude>
