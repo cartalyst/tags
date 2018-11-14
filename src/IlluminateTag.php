@@ -41,6 +41,7 @@ class IlluminateTag extends Model
     protected $fillable = [
         'name',
         'slug',
+        'lang',
         'count',
         'namespace',
     ];

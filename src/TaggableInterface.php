@@ -71,14 +71,13 @@ interface TaggableInterface
 
     /**
      * Returns the entity Eloquent tag model object.
-     *
+     * @param  string  $lang
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function tags();
 
     /**
-     * Returns all the tags under the entity namespace.
-     *
+     * Returns all the tags under the entity namespace.    
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function allTags();
@@ -87,7 +86,7 @@ interface TaggableInterface
      * Returns the entities with only the given tags.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string|array  $tags
+     * @param  string|array  $tags    
      * @param  string  $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -107,7 +106,7 @@ interface TaggableInterface
      * Returns the entities that do not have one of the given tags.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string|array  $tags
+     * @param  string|array  $tags    
      * @param  string  $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -117,43 +116,48 @@ interface TaggableInterface
      * Attaches multiple tags to the entity.
      *
      * @param  string|array  $tags
+     * @param  string  $lang
      * @return bool
      */
-    public function tag($tags);
+    public function tag($tags, $lang = null);
 
     /**
      * Detaches multiple tags from the entity or if no tags are
      * passed, removes all the attached tags from the entity.
      *
      * @param  string|array|null  $tags
+     * @param  string  $lang
      * @return bool
      */
-    public function untag($tags = null);
+    public function untag($tags = null, $lang = null);
 
     /**
      * Attaches or detaches the given tags.
      *
      * @param  string|array  $tags
+     * @param  string  $lang
      * @param  string  $type
      * @return bool
      */
-    public function setTags($tags, $type = 'name');
+    public function setTags($tags, $lang = null, $type = 'name');
 
     /**
      * Attaches the given tag to the entity.
      *
      * @param  string  $name
+     * @param  string  $lang
      * @return void
      */
-    public function addTag($name);
+    public function addTag($name, $lang = null);
 
     /**
      * Detaches the given tag from the entity.
      *
      * @param  string  $name
+     * @param  string  $lang
      * @return void
      */
-    public function removeTag($name);
+    public function removeTag($name, $lang = null);
 
     /**
      * Prepares the given tags before being saved.

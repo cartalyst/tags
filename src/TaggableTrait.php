@@ -124,7 +124,7 @@ trait TaggableTrait
 
         foreach ($tags as $tag) {
             $query->whereHas('tags', function ($query) use ($type, $tag) {
-                $query->where($type, $tag);
+                $query->where($type, $tag);                
             });
         }
 
@@ -158,10 +158,10 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function tag($tags)
+    public function tag($tags, $lang=null)
     {
         foreach ($this->prepareTags($tags) as $tag) {
-            $this->addTag($tag);
+            $this->addTag($tag, $lang);
         }
 
         return true;
@@ -170,9 +170,13 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function untag($tags = null)
+    public function untag($tags = null, $lang = null)
     {
-        $tags = $tags ?: $this->tags->pluck('name')->all();
+        if( empty($lang) ){
+            $tags = $tags ?: $this->tags->pluck('name')->all();
+        }else{
+            $tags = $tags ?: $this->tags()->where('lang', $lang)->pluck('name')->all();
+        }
 
         foreach ($this->prepareTags($tags) as $tag) {
             $this->removeTag($tag);
@@ -184,13 +188,13 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function setTags($tags, $type = 'name')
+    public function setTags($tags, $lang = null, $type = 'name')
     {
         // Prepare the tags
         $tags = $this->prepareTags($tags);
 
         // Get the current entity tags
-        $entityTags = $this->tags->pluck($type)->all();
+        $entityTags = $this->tags()->where('lang', $lang)->pluck($type)->all();
 
         // Prepare the tags to be added and removed
         $tagsToAdd = array_diff($tags, $entityTags);
@@ -198,12 +202,12 @@ trait TaggableTrait
 
         // Detach the tags
         if (! empty($tagsToDel)) {
-            $this->untag($tagsToDel);
+            $this->untag($tagsToDel, $lang);
         }
 
         // Attach the tags
         if (! empty($tagsToAdd)) {
-            $this->tag($tagsToAdd);
+            $this->tag($tagsToAdd, $lang);
         }
 
         return true;
@@ -212,10 +216,11 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function addTag($name)
+    public function addTag($name, $lang = null)
     {
         $tag = $this->createTagsModel()->firstOrNew([
             'slug'      => $this->generateTagSlug($name),
+            'lang'      => $lang,
             'namespace' => $this->getEntityClassName(),
         ]);
 
@@ -237,7 +242,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function removeTag($name)
+    public function removeTag($name, $lang = null)
     {
         $slug = $this->generateTagSlug($name);
 
@@ -246,6 +251,7 @@ trait TaggableTrait
         $tag = $this
             ->createTagsModel()
             ->whereNamespace($namespace)
+            ->where("lang", $lang)
             ->where(function ($query) use ($name, $slug) {
                 $query
                     ->orWhere('name', '=', $name)
@@ -255,7 +261,7 @@ trait TaggableTrait
             ->first()
         ;
 
-        if ($tag && $this->tags()->get()->contains($tag->id)) {
+        if ($tag && $this->tags()->where("lang", $lang)->get()->contains($tag->id)) {
             $tag->update([ 'count' => $tag->count - 1 ]);
 
             $this->tags()->detach($tag);
