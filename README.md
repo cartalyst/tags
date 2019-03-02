@@ -4,7 +4,7 @@
 
 A Tagging package that easily allows you to add tags to your Eloquent models.
 
-The package requires PHP 7.0+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
+The package requires PHP 7.1.3+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
 
 An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
@@ -32,7 +32,7 @@ Raw files can be found [here](https://github.com/cartalyst/tags/tree/docs/8.0).
 
 Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
-- [8.0](CHANGELOG.md) - TBA
+- [8.0](CHANGELOG.md) - 2019-03-02
 - [7.0](CHANGELOG.md) - 2018-10-03
 - [6.0](CHANGELOG.md) - 2018-02-07
 - [5.0](CHANGELOG.md) - 2017-08-30
@@ -61,4 +61,4 @@ Bug reports, feature requests, and pull requests can be submitted by following o
 
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
-© 2011-2018 Cartalyst LLC, All rights reserved.
+© 2011-2019 Cartalyst LLC, All rights reserved.
