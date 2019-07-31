@@ -34,6 +34,11 @@
             "Cartalyst\\Tags\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
     "extra": {
         "component": "package",
         "branch-alias": {
@@ -45,5 +50,6 @@
             ]
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
