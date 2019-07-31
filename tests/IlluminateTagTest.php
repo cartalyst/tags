@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Tags package.
  *
  * NOTICE OF LICENSE
@@ -22,7 +22,6 @@ namespace Cartalyst\Tags\Tests;
 
 use Cartalyst\Tags\IlluminateTag;
 use Cartalyst\Tags\IlluminateTagged;
-use Cartalyst\Tags\Tests\Stubs\Post;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -49,7 +48,7 @@ class IlluminateTagTest extends FunctionalTestCase
     /** @test */
     public function it_has_a_taggable_relationship()
     {
-        $tag = new IlluminateTag;
+        $tag = new IlluminateTag();
 
         $this->assertInstanceOf(MorphTo::class, $tag->taggable());
     }
@@ -57,7 +56,7 @@ class IlluminateTagTest extends FunctionalTestCase
     /** @test */
     public function it_has_a_tag_relationship()
     {
-        $tag = new IlluminateTag;
+        $tag = new IlluminateTag();
 
         $this->assertInstanceOf(HasMany::class, $tag->tagged());
     }
@@ -65,7 +64,7 @@ class IlluminateTagTest extends FunctionalTestCase
     /** @test */
     public function it_has_a_name_scope()
     {
-        IlluminateTag::create([ 'name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo' ]);
+        IlluminateTag::create(['name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo']);
 
         $this->assertCount(1, IlluminateTag::name('Foo')->get());
     }
@@ -73,7 +72,7 @@ class IlluminateTagTest extends FunctionalTestCase
     /** @test */
     public function it_has_a_slug_scope()
     {
-        IlluminateTag::create([ 'name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo' ]);
+        IlluminateTag::create(['name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo']);
 
         $this->assertCount(1, IlluminateTag::slug('foo')->get());
     }
@@ -81,10 +80,10 @@ class IlluminateTagTest extends FunctionalTestCase
     /** @test */
     public function it_can_get_and_set_the_tagged_model()
     {
-        $tag = new IlluminateTag;
+        $tag = new IlluminateTag();
 
         $tag->setTaggedModel(IlluminateTagged::class);
 
-        $this->assertEquals(IlluminateTagged::class, $tag->getTaggedModel());
+        $this->assertSame(IlluminateTagged::class, $tag->getTaggedModel());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Tags package.
  *
  * NOTICE OF LICENSE
@@ -30,5 +30,5 @@ class Post extends Model implements TaggableInterface
 
     public $table = 'posts';
 
-    protected $fillable = [ 'title' ];
+    protected $fillable = ['title'];
 }

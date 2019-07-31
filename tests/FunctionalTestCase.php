@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Tags package.
  *
  * NOTICE OF LICENSE
@@ -28,7 +28,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -75,6 +75,6 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
      */
     protected function createPost()
     {
-        return Post::create([ 'title' => 'My Test Post' ]);
+        return Post::create(['title' => 'My Test Post']);
     }
 }

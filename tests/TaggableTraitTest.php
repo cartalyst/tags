@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Tags package.
  *
  * NOTICE OF LICENSE
@@ -33,10 +33,10 @@ class TaggableTraitTest extends FunctionalTestCase
         $post2 = $this->createPost();
 
         $post1->tag('foo');
-        $post2->tag([ 'foo' ]);
+        $post2->tag(['foo']);
 
-        $this->assertSame([ 'foo' ], $post1->tags->pluck('slug')->toArray());
-        $this->assertSame([ 'foo' ], $post2->tags->pluck('slug')->toArray());
+        $this->assertSame(['foo'], $post1->tags->pluck('slug')->toArray());
+        $this->assertSame(['foo'], $post2->tags->pluck('slug')->toArray());
     }
 
     /** @test */
@@ -47,11 +47,11 @@ class TaggableTraitTest extends FunctionalTestCase
         $post3 = $this->createPost();
 
         $post1->tag('foo, bar');
-        $post2->tag([ 'foo', 'bar' ]);
+        $post2->tag(['foo', 'bar']);
         $post3->tag(null);
 
-        $this->assertSame([ 'foo', 'bar' ], $post1->tags->pluck('slug')->toArray());
-        $this->assertSame([ 'foo', 'bar' ], $post2->tags->pluck('slug')->toArray());
+        $this->assertSame(['foo', 'bar'], $post1->tags->pluck('slug')->toArray());
+        $this->assertSame(['foo', 'bar'], $post2->tags->pluck('slug')->toArray());
         $this->assertEmpty($post3->tags->pluck('slug')->toArray());
     }
 
@@ -62,7 +62,7 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post->tag('foo');
 
-        $this->assertSame([ 'foo' ], $post->tags->pluck('slug')->toArray());
+        $this->assertSame(['foo'], $post->tags->pluck('slug')->toArray());
 
         $post->untag('foo');
         $post->untag('foo');
@@ -93,7 +93,7 @@ class TaggableTraitTest extends FunctionalTestCase
 
         $post->setTags('foo, bar');
 
-        $this->assertSame([ 'foo', 'bar' ], $post->tags->pluck('slug')->toArray());
+        $this->assertSame(['foo', 'bar'], $post->tags->pluck('slug')->toArray());
     }
 
     /** @test */
@@ -128,7 +128,6 @@ class TaggableTraitTest extends FunctionalTestCase
         $post1->tag('foo, bar, baz');
         $post2->tag('foo, bat');
 
-
         $this->assertcount(1, Post::whereTag('foo, bar')->get());
 
         $this->assertcount(2, Post::withTag('foo')->get());
@@ -155,7 +154,7 @@ class TaggableTraitTest extends FunctionalTestCase
     /** @test */
     public function it_can_get_and_set_the_tags_delimiter()
     {
-        $post = new Post;
+        $post = new Post();
 
         $post->setTagsDelimiter(',');
 
@@ -165,7 +164,7 @@ class TaggableTraitTest extends FunctionalTestCase
     /** @test */
     public function it_can_get_and_set_the_tags_model()
     {
-        $post = new Post;
+        $post = new Post();
 
         $post->setTagsModel(IlluminateTag::class);
 
@@ -175,7 +174,7 @@ class TaggableTraitTest extends FunctionalTestCase
     /** @test */
     public function it_can_get_and_set_the_slug_generator()
     {
-        $post = new Post;
+        $post = new Post();
 
         $post->setSlugGenerator('Illuminate\Support\Str::slug');
 
