@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Tags package.
  *
  * NOTICE OF LICENSE
@@ -39,7 +39,7 @@ class MigrationCartalystTagsCreateTables extends Migration
 
             $table->engine = 'InnoDB';
 
-            $table->index([ 'taggable_type', 'taggable_id' ]);
+            $table->index(['taggable_type', 'taggable_id']);
         });
 
         Schema::create('tags', function (Blueprint $table) {
@@ -60,10 +60,7 @@ class MigrationCartalystTagsCreateTables extends Migration
      */
     public function down()
     {
-        $tables = [ 'tagged', 'tags' ];
-
-        foreach ($tables as $table) {
-            Schema::dropIfExists($table);
-        }
+        Schema::dropIfExists('tagged');
+        Schema::dropIfExists('tags');
     }
 }

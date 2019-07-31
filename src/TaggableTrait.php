@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Tags package.
  *
  * NOTICE OF LICENSE
@@ -20,7 +20,9 @@
 
 namespace Cartalyst\Tags;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait TaggableTrait
 {
@@ -48,7 +50,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function getTagsDelimiter()
+    public static function getTagsDelimiter(): string
     {
         return static::$delimiter;
     }
@@ -56,17 +58,15 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function setTagsDelimiter($delimiter)
+    public static function setTagsDelimiter(string $delimiter): void
     {
         static::$delimiter = $delimiter;
-
-        return get_called_class();
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function getTagsModel()
+    public static function getTagsModel(): string
     {
         return static::$tagsModel;
     }
@@ -74,7 +74,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function setTagsModel($model)
+    public static function setTagsModel(string $model): void
     {
         static::$tagsModel = $model;
     }
@@ -82,7 +82,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function getSlugGenerator()
+    public static function getSlugGenerator(): string
     {
         return static::$slugGenerator;
     }
@@ -90,7 +90,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function setSlugGenerator($slugGenerator)
+    public static function setSlugGenerator(string $slugGenerator): void
     {
         static::$slugGenerator = $slugGenerator;
     }
@@ -98,7 +98,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function tags()
+    public function tags(): MorphToMany
     {
         return $this->morphToMany(static::$tagsModel, 'taggable', 'tagged', 'taggable_id', 'tag_id');
     }
@@ -106,9 +106,9 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function allTags()
+    public static function allTags(): Builder
     {
-        $instance = new static;
+        $instance = new static();
 
         return $instance->createTagsModel()->whereNamespace(
             $instance->getEntityClassName()
@@ -118,9 +118,9 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function scopeWhereTag(Builder $query, $tags, $type = 'slug')
+    public static function scopeWhereTag(Builder $query, $tags, string $type = 'slug'): Builder
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         foreach ($tags as $tag) {
             $query->whereHas('tags', function ($query) use ($type, $tag) {
@@ -134,9 +134,9 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function scopeWithTag(Builder $query, $tags, $type = 'slug')
+    public static function scopeWithTag(Builder $query, $tags, string $type = 'slug'): Builder
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         return $query->whereHas('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
@@ -144,11 +144,11 @@ trait TaggableTrait
     }
 
     /**
-    * {@inheritdoc}
-    */
-    public static function scopeWithoutTag(Builder $query, $tags, $type = 'slug')
+     * {@inheritdoc}
+     */
+    public static function scopeWithoutTag(Builder $query, $tags, string $type = 'slug'): Builder
     {
-        $tags = (new static)->prepareTags($tags);
+        $tags = (new static())->prepareTags($tags);
 
         return $query->whereDoesntHave('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
@@ -158,7 +158,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function tag($tags)
+    public function tag($tags): bool
     {
         foreach ($this->prepareTags($tags) as $tag) {
             $this->addTag($tag);
@@ -170,7 +170,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function untag($tags = null)
+    public function untag($tags = null): bool
     {
         $tags = $tags ?: $this->tags->pluck('name')->all();
 
@@ -184,7 +184,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function setTags($tags, $type = 'name')
+    public function setTags($tags, $type = 'name'): bool
     {
         // Prepare the tags
         $tags = $this->prepareTags($tags);
@@ -212,7 +212,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function addTag($name)
+    public function addTag(string $name): void
     {
         $tag = $this->createTagsModel()->firstOrNew([
             'slug'      => $this->generateTagSlug($name),
@@ -226,7 +226,7 @@ trait TaggableTrait
         }
 
         if (! $this->tags()->get()->contains($tag->id)) {
-            $tag->update([ 'count' => $tag->count + 1 ]);
+            $tag->update(['count' => $tag->count + 1]);
 
             $this->tags()->attach($tag);
         }
@@ -237,7 +237,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function removeTag($name)
+    public function removeTag(string $name): void
     {
         $slug = $this->generateTagSlug($name);
 
@@ -256,7 +256,7 @@ trait TaggableTrait
         ;
 
         if ($tag && $this->tags()->get()->contains($tag->id)) {
-            $tag->update([ 'count' => $tag->count - 1 ]);
+            $tag->update(['count' => $tag->count - 1]);
 
             $this->tags()->detach($tag);
         }
@@ -267,7 +267,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function prepareTags($tags)
+    public function prepareTags($tags): array
     {
         if (is_null($tags)) {
             return [];
@@ -287,18 +287,19 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function createTagsModel()
+    public static function createTagsModel(): Model
     {
-        return new static::$tagsModel;
+        return new static::$tagsModel();
     }
 
     /**
      * Generate the tag slug using the given name.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
-    protected function generateTagSlug($name)
+    protected function generateTagSlug(string $name): string
     {
         return call_user_func(static::$slugGenerator, $name);
     }
@@ -308,7 +309,7 @@ trait TaggableTrait
      *
      * @return string
      */
-    protected function getEntityClassName()
+    protected function getEntityClassName(): string
     {
         if (isset(static::$entityNamespace)) {
             return static::$entityNamespace;
