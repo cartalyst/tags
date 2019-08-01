@@ -1,5 +1,11 @@
 # Changelog
 
+### v9.0.0 - TBA
+
+- Added support for PHP 7.2
+- Added support for Laravel 6.0
+- Dropped support for PHP 5.4+
+
 ### v8.0.0 - 2019-03-02
 
 `ADDED`
