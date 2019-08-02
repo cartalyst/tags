@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    7.0.0
+ * @version    8.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2018, Cartalyst LLC
+ * @copyright  (c) 2011-2019, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -28,7 +28,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
