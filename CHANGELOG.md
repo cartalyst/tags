@@ -1,10 +1,9 @@
 # Changelog
 
-### v9.0.0 - TBA
+### v9.0.0 - 2019-08-30
 
-- Added support for PHP 7.2
-- Added support for Laravel 6.0
-- Dropped support for PHP 5.4+
+- BC Break: PHP 7.2 is the minimum required PHP version
+- BC Break: Laravel 6.0 is the minimum supported Laravel version
 
 ### v8.0.0 - 2019-03-02
 
