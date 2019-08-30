@@ -34,7 +34,7 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
 
         $this->loadMigrationsFrom([
             '--database' => 'testbench',
-            '--realpath' => realpath(__DIR__.'/../resources/migrations'),
+            '--path'     => realpath(__DIR__.'/../resources/migrations'),
         ]);
 
         Schema::create('posts', function ($table) {
