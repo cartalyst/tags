@@ -184,7 +184,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public function setTags($tags, $type = 'name'): bool
+    public function setTags($tags, string $type = 'name'): bool
     {
         // Prepare the tags
         $tags = $this->prepareTags($tags);
