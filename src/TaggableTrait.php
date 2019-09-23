@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * Part of the Tags package.
  *
@@ -277,7 +279,7 @@ trait TaggableTrait
             $delimiter = preg_quote($this->getTagsDelimiter(), '#');
 
             $tags = array_map('trim',
-                preg_split("#[{$delimiter}]#", $tags, null, PREG_SPLIT_NO_EMPTY)
+                preg_split("#[{$delimiter}]#", $tags, -1, PREG_SPLIT_NO_EMPTY)
             );
         }
 
