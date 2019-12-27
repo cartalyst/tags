@@ -10,7 +10,7 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - travis_retry composer install --no-interaction --prefer-dist
+  - travis_retry composer install
 
 script:
-  - vendor/bin/phpunit --verbose
+  - vendor/bin/phpunit
