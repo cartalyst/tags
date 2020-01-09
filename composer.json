@@ -16,13 +16,13 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "illuminate/database": "^6.0"
+        "php": "^7.2.5",
+        "illuminate/database": "^7.0"
     },
     "require-dev": {
         "cartalyst/php-cs-fixer-config": "^1.0",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "^4.0",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^8.0"
     },
     "autoload": {
