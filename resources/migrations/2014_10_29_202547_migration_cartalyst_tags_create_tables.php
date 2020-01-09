@@ -11,11 +11,11 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    9.0.0
+ * @version    10.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2019, Cartalyst LLC
- * @link       http://cartalyst.com
+ * @copyright  (c) 2011-2020, Cartalyst LLC
+ * @link       https://cartalyst.com
  */
 
 use Illuminate\Support\Facades\Schema;
