@@ -82,7 +82,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function getSlugGenerator(): string
+    public static function getSlugGenerator()
     {
         return static::$slugGenerator;
     }
@@ -90,7 +90,7 @@ trait TaggableTrait
     /**
      * {@inheritdoc}
      */
-    public static function setSlugGenerator(string $slugGenerator): void
+    public static function setSlugGenerator($slugGenerator): void
     {
         static::$slugGenerator = $slugGenerator;
     }

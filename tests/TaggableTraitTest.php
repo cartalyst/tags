@@ -172,12 +172,24 @@ class TaggableTraitTest extends FunctionalTestCase
     }
 
     /** @test */
-    public function it_can_get_and_set_the_slug_generator()
+    public function it_can_get_and_set_the_slug_generator_as_a_string()
     {
         $post = new Post();
 
         $post->setSlugGenerator('Illuminate\Support\Str::slug');
 
         $this->assertSame('Illuminate\Support\Str::slug', $post->getSlugGenerator());
+    }
+
+    /** @test */
+    public function it_can_get_and_set_the_slug_generator_as_a_closure()
+    {
+        $post = new Post();
+
+        $post->setSlugGenerator(function ($value) {
+            return str_replace(' ', '_', strtolower($value));
+        });
+
+        $this->assertIsObject($post->getSlugGenerator());
     }
 }
