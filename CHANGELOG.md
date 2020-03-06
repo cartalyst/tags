@@ -1,5 +1,11 @@
 # Changelog
 
+### v10.0.1 - 2020-03-06
+
+`FIXED`
+
+- Regression on the getter and setter for the custom slug generator.
+
 ### v10.0.0 - 2020-03-03
 
 - Updated for Laravel 7.
