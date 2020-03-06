@@ -1,5 +1,11 @@
 # Changelog
 
+### v9.0.1 - 2020-03-06
+
+`FIXED`
+
+- Regression on the getter and setter for the custom slug generator.
+
 ### v9.0.0 - 2019-08-30
 
 - BC Break: PHP 7.2 is the minimum required PHP version
