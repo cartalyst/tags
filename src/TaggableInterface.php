@@ -61,18 +61,18 @@ interface TaggableInterface
     /**
      * Returns the slug generator.
      *
-     * @return string
+     * @return \Closure|string
      */
-    public static function getSlugGenerator(): string;
+    public static function getSlugGenerator();
 
     /**
      * Sets the slug generator.
      *
-     * @param string $name
+     * @param \Closure|string $name
      *
      * @return void
      */
-    public static function setSlugGenerator(string $name): void;
+    public static function setSlugGenerator($name): void;
 
     /**
      * Returns the entity Eloquent tag model object.
