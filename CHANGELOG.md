@@ -1,5 +1,9 @@
 # Changelog
 
+### v11.0.0 - TBA
+
+- Updated for Laravel 8
+
 ### v10.0.1 - 2020-03-06
 
 `FIXED`
