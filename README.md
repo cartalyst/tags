@@ -13,6 +13,7 @@ An open source package by [Cartalyst](https://cartalyst.com), code well, rock on
 
 Version | Laravel   | PHP Version
 ------- | --------- | ------------
+11.x    | 8.x       | >= 7.3
 10.x    | 7.x       | >= 7.2.5
 9.x     | 6.x       | >= 7.2
 8.x     | 5.8.x     | >= 7.1.3
