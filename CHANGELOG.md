@@ -1,5 +1,9 @@
 # Changelog
 
+### v11.1.0 - TBA
+
+- Add PHP 8 support
+
 ### v11.0.0 - 2020-09-12
 
 - Updated for Laravel 8.

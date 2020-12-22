@@ -47,11 +47,11 @@ If you discover any security related issues, please email help@cartalyst.com ins
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
 [link-docs]:      https://cartalyst.com/manual/tags
-[link-travis]:    https://travis-ci.org/cartalyst/tags
+[link-travis]:    https://travis-ci.com/cartalyst/tags
 [link-license]:   https://opensource.org/licenses/MIT
 [link-packagist]: https://packagist.org/packages/cartalyst/tags
 
-[icon-travis]:    https://travis-ci.org/cartalyst/tags.svg?branch=11.x
+[icon-travis]:    https://travis-ci.com/cartalyst/tags.svg?branch=11.x
 [icon-license]:   https://poser.pugx.org/cartalyst/tags/license
 [icon-version]:   https://poser.pugx.org/cartalyst/tags/version
 [icon-downloads]: https://poser.pugx.org/cartalyst/tags/downloads
