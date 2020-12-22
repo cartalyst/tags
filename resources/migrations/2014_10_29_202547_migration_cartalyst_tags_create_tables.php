@@ -40,6 +40,9 @@ class MigrationCartalystTagsCreateTables extends Migration
             $table->engine = 'InnoDB';
 
             $table->index(['taggable_type', 'taggable_id']);
+            $table->foreign('tag_id')->references('id')->on('tags')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
 
         Schema::create('tags', function (Blueprint $table) {
