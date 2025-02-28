@@ -1,5 +1,9 @@
 # Changelog
 
+### v15.0.0 - TBA
+
+- Add Laravel 12 support
+
 ### v14.0.0 - 2024-03-25
 
 - Add Laravel 11 support

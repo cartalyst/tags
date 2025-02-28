@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Tags
- * @version    14.0.0
+ * @version    15.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2024, Cartalyst LLC
+ * @copyright  (c) 2011-2025, Cartalyst LLC
  * @link       https://cartalyst.com
  */
 
