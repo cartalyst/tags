@@ -20,10 +20,12 @@
 
 namespace Cartalyst\Tags;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/** @property Collection<IlluminateTag> $tags */
 trait TaggableTrait
 {
     /**
@@ -172,10 +174,19 @@ trait TaggableTrait
      */
     public function untag($tags = null): bool
     {
-        $tags = $tags ?: $this->tags->pluck('name')->all();
-
-        foreach ($this->prepareTags($tags) as $tag) {
-            $this->removeTag($tag);
+        if (empty($tags)) {
+            $tags = $this->tags;
+            if (!empty($tags)) {
+                $this->tags()->detach();
+                foreach ($tags as $tag) {
+                    $tag->update(['count' => $tag->count - 1]);
+                }
+                $this->tags = new Collection();
+            }
+        } else {
+            foreach ($this->prepareTags($tags) as $tag) {
+                $this->removeTag($tag);
+            }
         }
 
         return true;
@@ -214,6 +225,7 @@ trait TaggableTrait
      */
     public function addTag(string $name): void
     {
+        /** @var IlluminateTag $tag */
         $tag = $this->createTagsModel()->firstOrCreate([
             'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
@@ -242,6 +254,7 @@ trait TaggableTrait
 
         $namespace = $this->getEntityClassName();
 
+        /** @var IlluminateTag $tag */
         $tag = $this->tags()
             ->whereNamespace($namespace)
             ->where(function ($query) use ($name, $slug) {

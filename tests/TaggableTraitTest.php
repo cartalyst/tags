@@ -44,9 +44,9 @@ class TaggableTraitTest extends FunctionalTestCase
     #[Test]
     public function it_can_add_multiple_tags()
     {
-            $post1 = $this->createPost();
-            $post2 = $this->createPost();
-            $post3 = $this->createPost();
+        $post1 = $this->createPost();
+        $post2 = $this->createPost();
+        $post3 = $this->createPost();
 
         $count = $this->withQueryCount(function () use ($post1, $post2, $post3) {
             $post1->tag('foo, bar');
@@ -88,7 +88,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $queryCount = $this->withQueryCount(fn () => $post->untag());
 
         $this->assertCount(0, $post->tags);
-        $this->assertLessThanOrEqual(9, $queryCount);
+        $this->assertLessThanOrEqual(4, $queryCount);
     }
 
     #[Test]

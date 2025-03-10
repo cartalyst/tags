@@ -25,6 +25,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/** @property string $name */
+/** @property string $namespace */
+/** @property string $slug */
+/** @property int $count */
 class IlluminateTag extends Model
 {
     /**
