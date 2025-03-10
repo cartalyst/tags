@@ -214,24 +214,23 @@ trait TaggableTrait
      */
     public function addTag(string $name): void
     {
-        $tag = $this->createTagsModel()->firstOrNew([
+        $tag = $this->createTagsModel()->firstOrCreate([
             'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
+        ],  [
+            'count' => 1,
+            'name' => $name,
         ]);
 
-        if (! $tag->exists) {
-            $tag->name = $name;
-
-            $tag->save();
-        }
-
-        if (! $this->tags()->get()->contains($tag->id)) {
-            $tag->update(['count' => $tag->count + 1]);
-
+        if ($tag->wasRecentlyCreated || !$this->tags()->whereKey($tag)->exists()) {
+            if (!$tag->wasRecentlyCreated) {
+                $tag->update(['count' => $tag->count + 1]);
+            }
             $this->tags()->attach($tag);
+            if ($this->relationLoaded('tags')) {
+                $this->tags->add($tag);
+            }
         }
-
-        $this->load('tags');
     }
 
     /**
@@ -243,8 +242,7 @@ trait TaggableTrait
 
         $namespace = $this->getEntityClassName();
 
-        $tag = $this
-            ->createTagsModel()
+        $tag = $this->tags()
             ->whereNamespace($namespace)
             ->where(function ($query) use ($name, $slug) {
                 $query
@@ -255,13 +253,19 @@ trait TaggableTrait
             ->first()
         ;
 
-        if ($tag && $this->tags()->get()->contains($tag->id)) {
+        if ($tag) {
             $tag->update(['count' => $tag->count - 1]);
-
             $this->tags()->detach($tag);
-        }
 
-        $this->load('tags');
+            if ($this->relationLoaded('tags')) {
+                foreach($this->tags as $key => $loadedTag) {
+                    if ($loadedTag->getKey() === $tag->getKey()) {
+                        unset($this->tags[$key]);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     /**
