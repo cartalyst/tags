@@ -1,5 +1,9 @@
 # Changelog
 
+### v15.0.1 - 2025-04-22
+
+- Lower PHP requirements to 8.2
+
 ### v15.0.0 - 2025-02-28
 
 - Add Laravel 12 support
