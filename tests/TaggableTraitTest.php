@@ -23,10 +23,12 @@ namespace Cartalyst\Tags\Tests;
 use Cartalyst\Tags\IlluminateTag;
 use Cartalyst\Tags\Tests\Stubs\Post;
 use Cartalyst\Tags\Tests\Stubs\Post2;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Test;
 
 class TaggableTraitTest extends FunctionalTestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_add_a_single_tag()
     {
         $post1 = $this->createPost();
@@ -39,23 +41,26 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertSame(['foo'], $post2->tags->pluck('slug')->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_tags()
     {
         $post1 = $this->createPost();
         $post2 = $this->createPost();
         $post3 = $this->createPost();
 
-        $post1->tag('foo, bar');
-        $post2->tag(['foo', 'bar']);
-        $post3->tag(null);
-
+        $count = $this->withQueryCount(function () use ($post1, $post2, $post3) {
+            $post1->tag('foo, bar');
+            $post2->tag(['foo', 'bar']);
+            $post3->tag(null);
+        });
+        $this->assertLessThanOrEqual(14, $count); // Previously 22 queries
         $this->assertSame(['foo', 'bar'], $post1->tags->pluck('slug')->toArray());
         $this->assertSame(['foo', 'bar'], $post2->tags->pluck('slug')->toArray());
         $this->assertEmpty($post3->tags->pluck('slug')->toArray());
+
     }
 
-    /** @test */
+    #[Test]
     public function it_can_untag()
     {
         $post = $this->createPost();
@@ -70,21 +75,23 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertEmpty($post->tags->pluck('slug')->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_remove_all_tags()
     {
         $post = $this->createPost();
 
-        $post->tag('foo, bar, baz');
+        $queryCount = $this->withQueryCount(fn () => $post->tag('foo, bar, baz'));
 
         $this->assertCount(3, $post->tags);
+        $this->assertLessThanOrEqual(9, $queryCount);
 
-        $post->untag();
+        $queryCount = $this->withQueryCount(fn () => $post->untag());
 
         $this->assertCount(0, $post->tags);
+        $this->assertLessThanOrEqual(4, $queryCount);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_tags()
     {
         $post = $this->createPost();
@@ -96,7 +103,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertSame(['foo', 'bar'], $post->tags->pluck('slug')->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_tags()
     {
         $post = $this->createPost();
@@ -106,7 +113,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertCount(3, $post->tags);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_all_tags()
     {
         $post1 = $this->createPost();
@@ -119,7 +126,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertCount(0, Post2::allTags()->get());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_by_the_given_tags()
     {
         $post1 = $this->createPost();
@@ -135,7 +142,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertcount(1, Post::withTag('bat')->get());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_without_the_given_tags()
     {
         $post1 = $this->createPost();
@@ -151,7 +158,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertcount(1, Post::withoutTag('bat')->get());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_and_set_the_tags_delimiter()
     {
         $post = new Post();
@@ -161,7 +168,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertSame(',', $post->getTagsDelimiter());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_and_set_the_tags_model()
     {
         $post = new Post();
@@ -171,7 +178,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertSame(IlluminateTag::class, $post->getTagsModel());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_and_set_the_slug_generator_as_a_string()
     {
         $post = new Post();
@@ -181,7 +188,7 @@ class TaggableTraitTest extends FunctionalTestCase
         $this->assertSame('Illuminate\Support\Str::slug', $post->getSlugGenerator());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_and_set_the_slug_generator_as_a_closure()
     {
         $post = new Post();

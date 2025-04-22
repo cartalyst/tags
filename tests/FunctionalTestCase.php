@@ -21,6 +21,7 @@
 namespace Cartalyst\Tags\Tests;
 
 use Cartalyst\Tags\Tests\Stubs\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class FunctionalTestCase extends \Orchestra\Testbench\TestCase
@@ -76,5 +77,15 @@ class FunctionalTestCase extends \Orchestra\Testbench\TestCase
     protected function createPost()
     {
         return Post::create(['title' => 'My Test Post']);
+    }
+
+    protected function withQueryCount($cb): int
+    {
+        DB::enableQueryLog();
+        call_user_func($cb);
+        $log = DB::getQueryLog();
+        DB::flushQueryLog();
+        DB::disableQueryLog();
+        return count($log);
     }
 }

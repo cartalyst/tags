@@ -24,10 +24,11 @@ use Cartalyst\Tags\IlluminateTag;
 use Cartalyst\Tags\IlluminateTagged;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use PHPUnit\Framework\Attributes\Test;
 
 class IlluminateTagTest extends FunctionalTestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_delete_a_tag_and_its_tagged_relations()
     {
         $post = $this->createPost();
@@ -45,7 +46,7 @@ class IlluminateTagTest extends FunctionalTestCase
         $this->assertCount(1, $post->tags);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_a_taggable_relationship()
     {
         $tag = new IlluminateTag();
@@ -53,7 +54,7 @@ class IlluminateTagTest extends FunctionalTestCase
         $this->assertInstanceOf(MorphTo::class, $tag->taggable());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_a_tag_relationship()
     {
         $tag = new IlluminateTag();
@@ -61,7 +62,7 @@ class IlluminateTagTest extends FunctionalTestCase
         $this->assertInstanceOf(HasMany::class, $tag->tagged());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_a_name_scope()
     {
         IlluminateTag::create(['name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo']);
@@ -69,7 +70,7 @@ class IlluminateTagTest extends FunctionalTestCase
         $this->assertCount(1, IlluminateTag::name('Foo')->get());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_a_slug_scope()
     {
         IlluminateTag::create(['name' => 'Foo', 'slug' => 'foo', 'namespace' => 'foo']);
@@ -77,7 +78,7 @@ class IlluminateTagTest extends FunctionalTestCase
         $this->assertCount(1, IlluminateTag::slug('foo')->get());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_and_set_the_tagged_model()
     {
         $tag = new IlluminateTag();
